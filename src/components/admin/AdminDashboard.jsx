@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';  // useNavigate hook'u
 import LoginHome from '../LoginHome';
 import CalisanIslemleri from './CalisanIslemleri/CalisanIslemleri.jsx';
 import MagazaIslemleri from './MagazaIslemleri/MagazaIslemleri.jsx';
+import FabrikaIslemleri from './FabrikaIslemleri/FabrikaIslemleri.jsx';
 function AdminDashboard() {
 
     const [selectedScreen, setSelectedScreen] = useState('mainDash');
@@ -27,6 +28,8 @@ function AdminDashboard() {
                 return <CalisanIslemleri />;
             case 'magaza':
                 return <MagazaIslemleri />;
+            case 'fabrika':
+                return <FabrikaIslemleri />;
 
             default:
                 return <MainDash />
