@@ -1,0 +1,42 @@
+/* DateTimeDisplay.css */
+
+.datetime-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+   
+}
+
+.datetime-card {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    width: 350px;
+    text-align: center;
+}
+
+.datetime-header h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.datetime-date,
+.datetime-time {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #555;
+}
+
+.datetime-date span,
+.datetime-time span {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #0072ff;
+    display: block;
+    margin-top: 5px;
+    letter-spacing: 1px;
+}
