@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -21,7 +22,7 @@ export const deleteCalisan = createAsyncThunk('calisan/deleteCalisan', async (ca
 });
 
 export const updateCalisan = createAsyncThunk('calisan/updateCalisan', async ({ calisanId, updatedData }) => {
-    const response = await axios.put(`${API_URL}/${calisanId}`, updatedData);
+    const response = await axios.put(`${API_URL}/`, updatedData);
     return response.data;
 });
 
