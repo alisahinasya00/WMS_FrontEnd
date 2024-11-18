@@ -2,12 +2,12 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 // API URL
-const API_URL = 'http://localhost:5002/api/Fabrika';
+const API_URL = 'http://localhost:5002/api/Fabrika';  // API URL'nizi burada belirtin
 
 // Async Thunks for API calls
 export const fetchFabrikalar = createAsyncThunk('fabrika/fetchFabrikalar', async () => {
     const response = await axios.get(API_URL);
-    return response.data.data;
+    return response.data.data;  // Veriyi geri döndür
 });
 
 export const addFabrika = createAsyncThunk('fabrika/addFabrika', async (newFabrika) => {
@@ -30,7 +30,7 @@ const fabrikaSlice = createSlice({
     name: 'fabrika',
     initialState: {
         fabrikalar: [],
-        status: 'idle', // 'idle', 'loading', 'succeeded', 'failed'
+        status: 'idle',  // 'idle', 'loading', 'succeeded', 'failed'
         error: null,
     },
     reducers: {},
