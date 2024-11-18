@@ -23,7 +23,7 @@ function AdminDashboard() {
         switch (selectedScreen) {
             case 'mainDash':
                 return <MainDash />;
-            case 'urun':
+            case 'calisan':
                 return <CalisanIslemleri />;
             case 'magaza':
                 return <MagazaIslemleri />;
