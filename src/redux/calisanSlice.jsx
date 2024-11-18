@@ -20,8 +20,8 @@ export const deleteCalisan = createAsyncThunk('calisan/deleteCalisan', async (ca
     return calisanId;
 });
 
-export const updateCalisan = createAsyncThunk('calisan/updateCalisan', async ({ calisanId, updatedData }) => {
-    const response = await axios.put(`${API_URL}/${calisanId}`, updatedData);
+export const updateCalisan = createAsyncThunk('calisan/updateCalisan', async ({ updatedData }) => {
+    const response = await axios.put(API_URL, updatedData);
     return response.data;
 });
 
@@ -76,7 +76,7 @@ const calisanSlice = createSlice({
                 state.status = 'succeeded';
                 const index = state.calisanlar.findIndex(calisan => calisan.calisanId === action.payload.calisanId);
                 if (index >= 0) {
-                    state.calisanlar[index] = action.payload;
+                    state.calisanlar[index] = { ...state.calisanlar[index], ...action.payload }; // Eski veriyi immütabil şekilde güncelle
                 }
             })
             .addCase(updateCalisan.rejected, (state, action) => {

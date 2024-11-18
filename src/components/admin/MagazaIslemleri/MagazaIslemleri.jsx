@@ -7,14 +7,11 @@ import './MagazaIslemleri.css';
 const MagazaIslemleri = () => {
     const dispatch = useDispatch();
     const { magazalar, status, error } = useSelector((state) => state.magaza);
-
     const [selectedMagaza, setSelectedMagaza] = useState(null);
     const [showUpdateForm, setShowUpdateForm] = useState(false);
     const [formData, setFormData] = useState({});
     const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
     const [deleteId, setDeleteId] = useState(null);
-
-    // Yeni mağaza ekleme formu durumu
     const [showAddForm, setShowAddForm] = useState(false);
     const [newMagazaData, setNewMagazaData] = useState({
         magazaAdi: '',
@@ -56,6 +53,7 @@ const MagazaIslemleri = () => {
         const magaza = magazalar.find((m) => m.magazaId === id);
         setFormData(magaza);
         setShowUpdateForm(true);
+        console.log('Updated Data:', formData);
     };
 
     const handleInputChange = (e) => {
@@ -68,9 +66,13 @@ const MagazaIslemleri = () => {
 
     const handleUpdateSubmit = (e) => {
         e.preventDefault();
-        dispatch(updateMagaza({ magazaId: formData.magazaId, updatedData: formData }));
+        dispatch(updateMagaza({ updatedData: formData }))
+            .then(() => {
+                dispatch(fetchMagazalar()); // Ekranı güncelle
+            });
         setShowUpdateForm(false);
     };
+
 
     // Yeni mağaza ekleme işlemi
     const handleAddInputChange = (e) => {
@@ -81,11 +83,27 @@ const MagazaIslemleri = () => {
         }));
     };
 
-    const handleAddSubmit = (e) => {
+    const handleAddMagazaSubmit = (e) => {
         e.preventDefault();
-        dispatch(addMagaza(newMagazaData));
-        setShowAddForm(false);
-        setNewMagazaData({ magazaAdi: '', adres: '', telefonNo: '', mail: '', sifre: '' }); // Formu sıfırla
+        dispatch(addMagaza(newMagazaData))
+            .then(() => {
+                setShowAddForm(false);
+                setNewMagazaData({
+                    magazaAdi: '',
+                    adres: '',
+                    telefonNo: '',
+                    mail: '',
+                    sifre: ''
+                }); // Form verilerini sıfırla
+                dispatch(fetchMagazalar());
+            })
+            .catch((error) => {
+                //setErrorMessage("Fabrika eklenirken bir hata oluştu.");
+            });
+    };
+
+    const handleAddMagazaClick = () => {
+        setShowAddForm(true); // Yeni fabrika ekleme formunu göster
     };
 
     if (status === 'loading') return <div className="status">Yükleniyor...</div>;
@@ -94,14 +112,13 @@ const MagazaIslemleri = () => {
     return (
         <div className="magaza-container">
             <h1>Mağazalar</h1>
-            <button className="add-button" onClick={() => setShowAddForm(true)}>Yeni Mağaza Ekle</button>
+            <button className="add-button" onClick={handleAddMagazaClick}>Yeni Mağaza Ekle</button>
             <ul className="magaza-list">
                 {magazalar.map((magaza) => (
                     <li key={magaza.magazaId} className="magaza-card">
                         <div className="magaza-info">
                             <strong>{magaza.magazaAdi}</strong>
                         </div>
-                        <br />
                         <div className="magaza-info">
                             <strong>{magaza.telefonNo}</strong>
                         </div>
@@ -116,10 +133,10 @@ const MagazaIslemleri = () => {
 
             {/* Yeni Mağaza Ekleme Formu (Modal olarak açılıyor) */}
             {showAddForm && (
-                <div className="add-modal">
-                    <div className="add-content">
+                <div className="update-modal">
+                    <div className="update-content">
                         <h2>Yeni Mağaza Ekle</h2>
-                        <form onSubmit={handleAddSubmit}>
+                        <form onSubmit={handleAddMagazaSubmit}>
                             <label>Mağaza Adı:</label>
                             <input
                                 type="text"
@@ -150,12 +167,12 @@ const MagazaIslemleri = () => {
                             />
                             <label>Sifre:</label>
                             <input
-                                type="email"
+                                type="password"
                                 name="sifre"
                                 value={newMagazaData.sifre}
                                 onChange={handleAddInputChange}
                             />
-                            <button type="submit" className="add-submit-button">Ekle</button>
+                            <button type="submit" className="update-submit-button">Ekle</button>
                             <button
                                 type="button"
                                 className="close-button"
@@ -205,8 +222,22 @@ const MagazaIslemleri = () => {
                             <label>Telefon:</label>
                             <input
                                 type="text"
-                                name="telefon"
+                                name="telefonNo"
                                 value={formData.telefonNo}
+                                onChange={handleInputChange}
+                            />
+                            <label>Mail:</label>
+                            <input
+                                type="email"
+                                name="mail"
+                                value={formData.mail}
+                                onChange={handleInputChange}
+                            />
+                            <label>Sifre:</label>
+                            <input
+                                type="text"
+                                name="sifre"
+                                value={formData.sifre}
                                 onChange={handleInputChange}
                             />
                             <button type="submit" className="update-submit-button">Güncelle</button>

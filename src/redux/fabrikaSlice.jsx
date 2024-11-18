@@ -20,8 +20,8 @@ export const deleteFabrika = createAsyncThunk('fabrika/deleteFabrika', async (fa
     return fabrikaId;
 });
 
-export const updateFabrika = createAsyncThunk('fabrika/updateFabrika', async ({ fabrikaId, updatedData }) => {
-    const response = await axios.put(`${API_URL}/${fabrikaId}`, updatedData);
+export const updateFabrika = createAsyncThunk('fabrika/updateFabrika', async ({ updatedData }) => {
+    const response = await axios.put(API_URL, updatedData);
     return response.data;
 });
 
@@ -76,7 +76,7 @@ const fabrikaSlice = createSlice({
                 state.status = 'succeeded';
                 const index = state.fabrikalar.findIndex(fabrika => fabrika.fabrikaId === action.payload.fabrikaId);
                 if (index >= 0) {
-                    state.fabrikalar[index] = action.payload;
+                    state.fabrikalar[index] = { ...state.fabrikalar[index], ...action.payload }; // Eski veriyi immütabil şekilde güncelle
                 }
             })
             .addCase(updateFabrika.rejected, (state, action) => {

@@ -14,6 +14,11 @@ import { UilUsdSquare, UilMoneyWithdrawal } from "@iconscout/react-unicons";
 import { AiOutlineStock } from "react-icons/ai";
 import { FaFileInvoiceDollar } from "react-icons/fa";
 import { MdOutlineProductionQuantityLimits } from "react-icons/md";
+import { MdCategory } from "react-icons/md";
+import { FaBox } from "react-icons/fa";
+import { BsBox2 } from "react-icons/bs";
+import { GrTransaction } from "react-icons/gr";
+
 
 export const SidebarData = [
     {
@@ -27,7 +32,7 @@ export const SidebarData = [
         screen: "calisan"
     },
     {
-        icon: AiOutlineProduct,
+        icon: BsBox2,
         heading: "Ürün İşlemleri",
         screen: "urun"
     }, {
@@ -44,14 +49,14 @@ export const SidebarData = [
         heading: "Depo işlemleri",
         screen: "depo"
     }, {
-        icon: FaBorderNone,
+        icon: GrTransaction,
         heading: "Giriş/Çıkış Ürünler",
         screen: "siparis"
     },
     {
-        icon: RiProductHuntLine,
-        heading: "Ürün İşlemleri",
-        screen: "bilmiyorum"
+        icon: MdCategory,
+        heading: "Ürün-Kategori İşlemleri",
+        screen: "kategori"
     },
     {
         icon: MdOutlineInsertChartOutlined,

@@ -7,7 +7,6 @@ import './FabrikaIslemleri.css';
 const FabrikaIslemleri = () => {
     const dispatch = useDispatch();
     const { fabrikalar, status, error } = useSelector((state) => state.fabrika);
-
     const [selectedFabrika, setSelectedFabrika] = useState(null); // Detay gösterimi için durum
     const [showUpdateForm, setShowUpdateForm] = useState(false); // Güncelleme formu gösterimi için durum
     const [formData, setFormData] = useState({}); // Güncelleme formu verisi
@@ -74,7 +73,7 @@ const FabrikaIslemleri = () => {
 
     const handleUpdateSubmit = (e) => {
         e.preventDefault();
-        dispatch(updateFabrika({ fabrikaId: formData.fabrikaId, updatedData: formData }))
+        dispatch(updateFabrika({ updatedData: formData }))
             .then(() => {
                 setShowUpdateForm(false);
                 dispatch(fetchFabrikalar());

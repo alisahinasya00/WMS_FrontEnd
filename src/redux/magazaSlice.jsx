@@ -16,8 +16,8 @@ export const addMagaza = createAsyncThunk('magaza/addMagaza', async (magaza) => 
     return response.data; // Yeni mağaza verisini döndür
 });
 
-export const updateMagaza = createAsyncThunk('magaza/updateMagaza', async ({ magazaId, updatedData }) => {
-    const response = await axios.put(`${API_URL}/${magazaId}`, updatedData);
+export const updateMagaza = createAsyncThunk('magaza/updateMagaza', async ({ updatedData }) => {
+    const response = await axios.put(API_URL, updatedData);
     return response.data;
 });
 
@@ -77,7 +77,7 @@ const magazaSlice = createSlice({
                 state.status = 'succeeded';
                 const index = state.magazalar.findIndex(magaza => magaza.magazaId === action.payload.magazaId);
                 if (index >= 0) {
-                    state.magazalar[index] = action.payload;
+                    state.magazalar[index] = { ...state.magazalar[index], ...action.payload }; // Eski veriyi immütabil şekilde güncelle
                 }
             })
             .addCase(updateMagaza.rejected, (state, action) => {

@@ -116,17 +116,33 @@
     background-color: #d73227;
 }
 
+.radio-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px; /* Radyo butonları ve metinler arasındaki boşluk */
+    margin-left: 20px; /* "Rol:" etiketi ile radyo butonları arasındaki boşluk */
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Radyo kutusu ve yanındaki metin arasındaki boşluk */
+}
+
+
+
 /* Güncelleme Formu Modali */
 .update-modal {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
+    width: 500px;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
+    display: row;
     justify-content: center;
     align-items: center;
+    overflow-y: auto;
     z-index: 1000;
 }
 
@@ -135,8 +151,10 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    width: 400px;
+    width: 600px;
     text-align: left;
+    max-height: 80vh;
+    overflow-y: auto;
 }
 
 .update-content input {
