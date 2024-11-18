@@ -24,32 +24,39 @@ export const SidebarData = [
     {
         icon: CiUser,
         heading: "Çalışan işlemleri",
-        screen: "products"
+        screen: "calisan"
     },
     {
         icon: AiOutlineProduct,
-        heading: "Ürün İşlemleri"
+        heading: "Ürün İşlemleri",
+        screen: "urun"
     }, {
         icon: CiShop,
-        heading: "Mağaza İşlemleri"
+        heading: "Mağaza İşlemleri",
+        screen: "magaza"
     },
     {
         icon: MdOutlineFactory,
-        heading: "Fabrika İşlemleri"
+        heading: "Fabrika İşlemleri",
+        screen: "fabrika"
     }, {
         icon: MdOutlineWarehouse,
-        heading: "Depo işlemleri"
+        heading: "Depo işlemleri",
+        screen: "depo"
     }, {
         icon: FaBorderNone,
-        heading: "Giriş/Çıkış Ürünler"
+        heading: "Giriş/Çıkış Ürünler",
+        screen: "siparis"
     },
     {
         icon: RiProductHuntLine,
-        heading: "Ürün İşlemleri"
+        heading: "Ürün İşlemleri",
+        screen: "bilmiyorum"
     },
     {
         icon: MdOutlineInsertChartOutlined,
-        heading: "İstatistikler"
+        heading: "İstatistikler",
+        screen: "istatistik"
     }
 ];
 
