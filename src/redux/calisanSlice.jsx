@@ -1,48 +1,39 @@
-//http://localhost:5002/api/Calisan
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 // API URL
-const API_URL = 'http://localhost:5002/api/Calisan'; // API endpoint'inizi buraya yazın
+const API_URL = 'http://localhost:5002/api/Calisan';
 
-// Async Thunks
-export const fetchCalisanlar = createAsyncThunk('calisanlar/fetchCalisanlar', async () => {
+// Async Thunks for API calls
+export const fetchCalisanlar = createAsyncThunk('calisan/fetchCalisanlar', async () => {
     const response = await axios.get(API_URL);
     return response.data.data;
 });
 
-export const addCalisan = createAsyncThunk('calisanlar/addCalisan', async (calisan) => {
-    const response = await axios.post(API_URL, calisan);
-    return response.data.data;
+export const addCalisan = createAsyncThunk('calisan/addCalisan', async (newCalisan) => {
+    const response = await axios.post(API_URL, newCalisan);
+    return response.data;
 });
 
-export const updateCalisan = createAsyncThunk('calisanlar/updateCalisan', async ({ calisanId, calisan }) => {
-    const response = await axios.put(`${API_URL}/${calisanId}`, calisan);
-    return response.data.data;
-});
-
-export const deleteCalisan = createAsyncThunk('calisanlar/deleteCalisan', async (calisanId) => {
+export const deleteCalisan = createAsyncThunk('calisan/deleteCalisan', async (calisanId) => {
     await axios.delete(`${API_URL}/${calisanId}`);
     return calisanId;
 });
 
-// Slice
+export const updateCalisan = createAsyncThunk('calisan/updateCalisan', async ({ calisanId, updatedData }) => {
+    const response = await axios.put(`${API_URL}/${calisanId}`, updatedData);
+    return response.data;
+});
+
+// Create Slice
 const calisanSlice = createSlice({
-    name: "calisan",
+    name: 'calisan',
     initialState: {
-        data: [],
-        selectedCalisan: null, // Seçilen çalışanın bilgisi
-        status: 'idle',
+        calisanlar: [],
+        status: 'idle', // 'idle', 'loading', 'succeeded', 'failed'
         error: null,
     },
-    reducers: {
-        setSelectedCalisan: (state, action) => {
-            state.selectedCalisan = action.payload; // Seçilen çalışan atanıyor
-        },
-        clearSelectedCalisan: (state) => {
-            state.selectedCalisan = null; // Seçilen çalışan temizleniyor
-        },
-    },
+    reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(fetchCalisanlar.pending, (state) => {
@@ -50,27 +41,49 @@ const calisanSlice = createSlice({
             })
             .addCase(fetchCalisanlar.fulfilled, (state, action) => {
                 state.status = 'succeeded';
-                state.data = action.payload;
+                state.calisanlar = action.payload;
             })
             .addCase(fetchCalisanlar.rejected, (state, action) => {
                 state.status = 'failed';
                 state.error = action.error.message;
             })
-            .addCase(addCalisan.fulfilled, (state, action) => {
-                state.data.push(action.payload);
+            .addCase(addCalisan.pending, (state) => {
+                state.status = 'loading';
             })
-            .addCase(updateCalisan.fulfilled, (state, action) => {
-                const index = state.data.findIndex((calisan) => calisan.calisanId === action.payload.calisanId);
-                if (index !== -1) {
-                    state.data[index] = action.payload;
-                }
+            .addCase(addCalisan.fulfilled, (state, action) => {
+                state.status = 'succeeded';
+                state.calisanlar.push(action.payload);
+            })
+            .addCase(addCalisan.rejected, (state, action) => {
+                state.status = 'failed';
+                state.error = action.error.message;
+            })
+            .addCase(deleteCalisan.pending, (state) => {
+                state.status = 'loading';
             })
             .addCase(deleteCalisan.fulfilled, (state, action) => {
-                state.data = state.data.filter((calisan) => calisan.calisanId !== action.payload);
+                state.status = 'succeeded';
+                state.calisanlar = state.calisanlar.filter(calisan => calisan.calisanId !== action.payload);
+            })
+            .addCase(deleteCalisan.rejected, (state, action) => {
+                state.status = 'failed';
+                state.error = action.error.message;
+            })
+            .addCase(updateCalisan.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(updateCalisan.fulfilled, (state, action) => {
+                state.status = 'succeeded';
+                const index = state.calisanlar.findIndex(calisan => calisan.calisanId === action.payload.calisanId);
+                if (index >= 0) {
+                    state.calisanlar[index] = action.payload;
+                }
+            })
+            .addCase(updateCalisan.rejected, (state, action) => {
+                state.status = 'failed';
+                state.error = action.error.message;
             });
     },
 });
-
-export const { setSelectedCalisan, clearSelectedCalisan } = calisanSlice.actions;
 
 export default calisanSlice.reducer;
