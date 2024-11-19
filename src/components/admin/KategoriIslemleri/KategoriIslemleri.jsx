@@ -1,3 +1,4 @@
+
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -42,18 +43,38 @@ const KategoriIslemleri = () => {
             });
     };
 
-    const handleUpdateKategoriSubmit = (e) => {
+
+
+
+    const handleUpdateKategoriSubmit = async (e) => {
         e.preventDefault();
-        dispatch(updateKategori({ kategoriId: updateId, ...formData }))
-            .then(() => {
-                setShowUpdateForm(false);
-                setFormData({ kategoriAdi: '' });
-                dispatch(fetchKategoriler());
-            })
-            .catch((error) => {
-                console.error('Kategori güncellenirken bir hata oluştu:', error);
-            });
+
+        // Backend'in beklediği veri yapısını hazırlayın
+        const updatedData = {
+            kategoriId: updateId, // Güncellenecek kategori ID'si
+            kategoriAdi: formData.kategoriAdi, // Kategori adı
+        };
+
+        try {
+            // Kategori güncelleme isteği
+            await dispatch(
+                updateKategori({
+                    updatedData, // Gönderilen veri
+                })
+            ).unwrap(); // unwrap ile olası hataları yakala
+
+            // Güncelleme sonrası UI güncellemesi ve form temizliği
+            setShowUpdateForm(false);
+            setFormData({ kategoriAdi: '' });
+
+            // Güncellenmiş kategoriler listesi yeniden alınır
+            dispatch(fetchKategoriler());
+        } catch (error) {
+            // Hata durumunda loglama
+            console.error('Kategori güncellenirken bir hata oluştu:', error);
+        }
     };
+
 
     const handleDelete = (id) => {
         setDeleteId(id);

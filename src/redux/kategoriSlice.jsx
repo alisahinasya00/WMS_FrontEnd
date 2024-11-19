@@ -21,9 +21,14 @@ export const deleteKategori = createAsyncThunk('kategori/deleteKategori', async 
 });
 
 export const updateKategori = createAsyncThunk('kategori/updateKategori', async ({ updatedData }) => {
-    const response = await axios.put(API_URL, updatedData);
+    const response = await axios.put(API_URL, updatedData, {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
     return response.data;
 });
+
 
 // Create Slice
 const kategoriSlice = createSlice({
