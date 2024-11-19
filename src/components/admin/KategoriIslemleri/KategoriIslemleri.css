@@ -1,7 +1,8 @@
-.magaza-container {
+.kategori-container {
     font-family: Arial, sans-serif;
     padding: 20px;
     max-width: 1200px;
+    margin: 0; /* Removed centering */
 }
 
 .status {
@@ -10,7 +11,7 @@
     color: #555;
 }
 
-.magaza-list {
+.kategori-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid */
     gap: 16px;
@@ -19,7 +20,7 @@
     list-style-type: none;
 }
 
-.magaza-card {
+.kategori-card {
     background: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -31,56 +32,30 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
-.magaza-card:hover {
-    transform: translateY(-5px); /* Kartı hafifçe yukarı kaldırır */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Gölgeyi büyütür */
-    background-color: #f1f1f1; /* Arka plan rengini hafifçe değiştirir */
+.kategori-card:hover {
+    transform: translateY(-5px); /* Slightly lift the card on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Expand the shadow */
+    background-color: #f1f1f1; /* Slightly change the background color */
 }
 
-.magaza-info {
+.kategori-info {
     margin-bottom: 12px;
 }
 
-.magaza-actions {
+.kategori-actions {
     display: flex;
     justify-content: space-between;
     gap: 8px;
 }
 
-.button {
+.update-button,
+.delete-button {
     padding: 8px 12px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-size: 14px;
     transition: background-color 0.3s ease;
-}
-
-.detail-button {
-    background-color: #007bff;
-    color: white;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.detail-button:hover {
-    background-color: #0056b3;
-    transform: scale(1.05); /* Slightly enlarge the button on hover */
-}
-
-.detail-button:active {
-    background-color: #004494;
-    transform: scale(0.98); /* Slightly shrink on click */
-}
-
-
-.add-button {
-    background-color: #ffa500;
 }
 
 .update-button {
@@ -99,57 +74,34 @@
     background-color: #d73227;
 }
 
-/* Modal Genel Tasarımı */
-.modal {
+/* Modal for Update Form */
+.update-modal {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow-y: auto;
     z-index: 1000;
 }
 
-.modal-content {
+.update-content {
     background: white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    width: 400px;
+    width: 600px;
     text-align: left;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-sizing: border-box;
 }
 
-.close-button {
-    display: block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #f44336;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.add-button {
-    display: block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #f44336;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.close-button:hover {
-    background-color: #d73227;
-}
-
-/* Form Giriş Alanları */
-input[type="text"], input[type="email"] {
+.update-content input {
     width: 100%;
     padding: 8px;
     margin: 8px 0;
@@ -157,30 +109,20 @@ input[type="text"], input[type="email"] {
     border-radius: 4px;
 }
 
-form label {
-    display: block;
-    margin-top: 10px;
-}
-
-/* Yeni Mağaza Ekleme ve Güncelleme Formu */
-.update-content, .add-content {
-    width: 100%;
-}
-
-.update-submit-button, .add-submit-button {
+.update-submit-button {
     background-color: #007bff;
     color: white;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
-    width: 100%;
+    transition: background-color 0.3s ease;
 }
 
-.update-submit-button:hover, .add-submit-button:hover {
+.update-submit-button:hover {
     background-color: #0056b3;
 }
 
-/* Silme Onayı */
+/* Deletion Confirmation */
 .delete-confirm-modal {
     position: fixed;
     top: 0;
@@ -227,4 +169,31 @@ form label {
 
 .delete-cancel-button:hover {
     background-color: #0056b3;
+}
+
+/* Form Inputs and Labels */
+input[type="text"], input[type="email"] {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+form label {
+    display: block;
+    margin-top: 10px;
+}
+
+/* Modal for Add Form */
+.add-button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.add-button:hover {
+    background-color: #d73227;
 }
