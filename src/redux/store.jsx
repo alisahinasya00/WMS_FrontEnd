@@ -3,12 +3,14 @@ import loginSlice from './loginSlice'
 import calisanSlice from './calisanSlice'
 import magazaSlice from './magazaSlice'
 import fabrikaSlice from './fabrikaSlice'
+import kategoriSlice from './kategoriSlice'
 
 export const store = configureStore({
     reducer: {
         login: loginSlice,
         calisan: calisanSlice,
         magaza: magazaSlice,
-        fabrika: fabrikaSlice
+        fabrika: fabrikaSlice,
+        kategori: kategoriSlice
     },
 })
