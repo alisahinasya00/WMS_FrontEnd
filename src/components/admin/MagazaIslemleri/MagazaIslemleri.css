@@ -28,6 +28,13 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.magaza-card:hover {
+    transform: translateY(-5px); /* Kartı hafifçe yukarı kaldırır */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Gölgeyi büyütür */
+    background-color: #f1f1f1; /* Arka plan rengini hafifçe değiştirir */
 }
 
 .magaza-info {
@@ -51,14 +58,29 @@
 
 .detail-button {
     background-color: #007bff;
-}
-
-.add-button {
-    background-color: #ffa500;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .detail-button:hover {
     background-color: #0056b3;
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+}
+
+.detail-button:active {
+    background-color: #004494;
+    transform: scale(0.98); /* Slightly shrink on click */
+}
+
+
+.add-button {
+    background-color: #ffa500;
 }
 
 .update-button {

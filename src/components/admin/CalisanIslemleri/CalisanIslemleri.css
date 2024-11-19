@@ -2,7 +2,6 @@
     font-family: Arial, sans-serif;
     padding: 20px;
     max-width: 1200px;
-    margin: 0 auto;
 }
 
 .status {
@@ -12,8 +11,8 @@
 }
 
 .calisan-list {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid */
     gap: 16px;
     padding: 0;
     margin-top: 20px;
@@ -26,11 +25,16 @@
     border-radius: 8px;
     padding: 16px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    flex: 1 1 calc(33.333% - 16px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    max-width: calc(33.333% - 16px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.calisan-card:hover {
+    transform: translateY(-5px); /* Slightly lift the card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Increase shadow size */
+    background-color: #f1f1f1; /* Slightly change background color */
 }
 
 .calisan-info {
@@ -43,23 +47,13 @@
     gap: 8px;
 }
 
-.detail-button,
-.update-button,
-.delete-button {
+.button {
     padding: 8px 12px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-size: 14px;
-    color: white;
-}
-
-.detail-button {
-    background-color: #007bff;
-}
-
-.detail-button:hover {
-    background-color: #0056b3;
+    transition: background-color 0.3s ease;
 }
 
 .update-button {
@@ -78,8 +72,8 @@
     background-color: #d73227;
 }
 
-/* Detay Modali */
-.detail-modal {
+/* Modal General Design */
+.modal {
     position: fixed;
     top: 0;
     left: 0;
@@ -92,7 +86,7 @@
     z-index: 1000;
 }
 
-.detail-content {
+.modal-content {
     background: white;
     padding: 20px;
     border-radius: 8px;
@@ -116,48 +110,8 @@
     background-color: #d73227;
 }
 
-.radio-group {
-    display: inline-flex;
-    align-items: center;
-    gap: 15px; /* Radyo butonları ve metinler arasındaki boşluk */
-    margin-left: 20px; /* "Rol:" etiketi ile radyo butonları arasındaki boşluk */
-}
-
-.radio-group label {
-    display: flex;
-    align-items: center;
-    gap: 5px; /* Radyo kutusu ve yanındaki metin arasındaki boşluk */
-}
-
-
-
-/* Güncelleme Formu Modali */
-.update-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 500px;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: row;
-    justify-content: center;
-    align-items: center;
-    overflow-y: auto;
-    z-index: 1000;
-}
-
-.update-content {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    width: 600px;
-    text-align: left;
-    max-height: 80vh;
-    overflow-y: auto;
-}
-
-.update-content input {
+/* Form Fields */
+input[type="text"], input[type="email"] {
     width: 100%;
     padding: 8px;
     margin: 8px 0;
@@ -165,19 +119,30 @@
     border-radius: 4px;
 }
 
-.update-submit-button {
+form label {
+    display: block;
+    margin-top: 10px;
+}
+
+/* Add/Edit Form */
+.update-content, .add-content {
+    width: 100%;
+}
+
+.update-submit-button, .add-submit-button {
     background-color: #007bff;
     color: white;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
+    width: 100%;
 }
 
-.update-submit-button:hover {
+.update-submit-button:hover, .add-submit-button:hover {
     background-color: #0056b3;
 }
 
-/* Silme Onayı */
+/* Deletion Confirmation */
 .delete-confirm-modal {
     position: fixed;
     top: 0;

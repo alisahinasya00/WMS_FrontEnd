@@ -2,7 +2,7 @@
     font-family: Arial, sans-serif;
     padding: 20px;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0; /* Removed centering */
 }
 
 .status {
@@ -12,8 +12,8 @@
 }
 
 .kategori-list {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid */
     gap: 16px;
     padding: 0;
     margin-top: 20px;
@@ -26,11 +26,16 @@
     border-radius: 8px;
     padding: 16px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    flex: 1 1 calc(33.333% - 16px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    max-width: calc(33.333% - 16px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.kategori-card:hover {
+    transform: translateY(-5px); /* Slightly lift the card on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Expand the shadow */
+    background-color: #f1f1f1; /* Slightly change the background color */
 }
 
 .kategori-info {
@@ -50,7 +55,7 @@
     border-radius: 4px;
     cursor: pointer;
     font-size: 14px;
-    color: white;
+    transition: background-color 0.3s ease;
 }
 
 .update-button {
@@ -69,12 +74,12 @@
     background-color: #d73227;
 }
 
-/* Güncelleme Formu Modali */
+/* Modal for Update Form */
 .update-modal {
     position: fixed;
     top: 0;
     left: 0;
-    width: 500px;
+    width: 100%;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
     display: flex;
@@ -93,6 +98,7 @@
     text-align: left;
     max-height: 80vh;
     overflow-y: auto;
+    box-sizing: border-box;
 }
 
 .update-content input {
@@ -109,13 +115,14 @@
     border: none;
     padding: 10px 20px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .update-submit-button:hover {
     background-color: #0056b3;
 }
 
-/* Silme Onayı */
+/* Deletion Confirmation */
 .delete-confirm-modal {
     position: fixed;
     top: 0;
@@ -162,4 +169,31 @@
 
 .delete-cancel-button:hover {
     background-color: #0056b3;
+}
+
+/* Form Inputs and Labels */
+input[type="text"], input[type="email"] {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+form label {
+    display: block;
+    margin-top: 10px;
+}
+
+/* Modal for Add Form */
+.add-button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.add-button:hover {
+    background-color: #d73227;
 }
