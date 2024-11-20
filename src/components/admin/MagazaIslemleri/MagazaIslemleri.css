@@ -228,3 +228,51 @@ form label {
 .delete-cancel-button:hover {
     background-color: #0056b3;
 }
+
+.detail-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Ortada hizalama */
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    width: 100vw;
+    height: 100vh;
+}
+
+.detail-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    width: 400px;
+    text-align: left;
+}
+
+/* Güncelleme Modalı (Detay gibi Ortada) */
+.update-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Ortada hizalama */
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Güncelleme Modal İçeriği */
+.update-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    width: 400px;
+    text-align: left;
+}

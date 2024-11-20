@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchGirisIslemler, fetchCikisIslemler, fetchIadeIslemler } from '../../../redux/siparisSlice';
 import { fetchFabrikalar } from '../../../redux/fabrikaSlice';
 import { fetchMagazalar } from '../../../redux/magazaSlice';
-import './SiparisIslemleri.css';
+///import './SiparisIslemleri.css';
 
 const SiparisIslemleri = () => {
   const dispatch = useDispatch();
@@ -16,7 +16,6 @@ const SiparisIslemleri = () => {
 
   // Fabrikalar ve Mağazalar
   const fabrikalar = useSelector((state) => state.fabrika.list);
-  const magazalar = useSelector((state) => state.magaza.list);
 
   // Durum
   const siparisStatus = useSelector((state) => state.siparis.status);

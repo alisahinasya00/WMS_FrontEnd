@@ -133,8 +133,8 @@ const MagazaIslemleri = () => {
 
             {/* Yeni Mağaza Ekleme Formu (Modal olarak açılıyor) */}
             {showAddForm && (
-                <div className="update-modal">
-                    <div className="update-content">
+                <div className="modal">
+                    <div className="modal-content">
                         <h2>Yeni Mağaza Ekle</h2>
                         <form onSubmit={handleAddMagazaSubmit}>
                             <label>Mağaza Adı:</label>

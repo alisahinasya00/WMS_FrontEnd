@@ -171,8 +171,8 @@ const FabrikaIslemleri = () => {
 
             {/* Detay Modali */}
             {selectedFabrika && (
-                <div className="modal">
-                    <div className="modal-content">
+                <div className="detail-modal">
+                    <div className="detail-content">
                         <h2>Fabrika Detayları</h2>
                         <p><strong>Adres:</strong> {selectedFabrika.adres || 'Adres Bulunamadı'}</p>
                         <p><strong>Telefon:</strong> {selectedFabrika.telefonNo}</p>
@@ -183,8 +183,8 @@ const FabrikaIslemleri = () => {
 
             {/* Güncelleme Formu */}
             {showUpdateForm && (
-                <div className="modal">
-                    <div className="modal-content">
+                <div className="update-modal">
+                    <div className="update-content">
                         <h2>Fabrika Bilgilerini Güncelle</h2>
                         <form onSubmit={handleUpdateSubmit}>
                             <label>Adres:</label>

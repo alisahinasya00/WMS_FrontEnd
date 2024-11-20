@@ -58,11 +58,6 @@ export const SidebarData = [
         heading: "Ürün-Kategori İşlemleri",
         screen: "kategori"
     },
-    {
-        icon: MdOutlineInsertChartOutlined,
-        heading: "İstatistikler",
-        screen: "istatistik"
-    }
 ];
 
 export const CardsData = [
