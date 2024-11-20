@@ -9,7 +9,7 @@ const RightSide = () => {
         <div className="RightSide">
             <div>
                 <Date />
-                <h3>Müşteri İncelemesi</h3>
+                <h3>Çalışan İncelemesi</h3>
                 <CustomerReview />
 
             </div>
