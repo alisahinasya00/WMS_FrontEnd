@@ -8,11 +8,8 @@ import LoginHome from '../LoginHome';
 import CalisanIslemleri from './CalisanIslemleri/CalisanIslemleri.jsx';
 import MagazaIslemleri from './MagazaIslemleri/MagazaIslemleri.jsx';
 import FabrikaIslemleri from './FabrikaIslemleri/FabrikaIslemleri.jsx';
-<<<<<<< HEAD
 import DepoIslemleri from './DepoIslemleri/DepoIslemleri.jsx'
-=======
 import KategoriIslemleri from './KategoriIslemleri/KategoriIslemleri.jsx';
->>>>>>> 28774e865d2b56079cae01c24c15d79e4dde430e
 function AdminDashboard() {
 
     const [selectedScreen, setSelectedScreen] = useState('mainDash');
@@ -35,14 +32,10 @@ function AdminDashboard() {
                 return <MagazaIslemleri />;
             case 'fabrika':
                 return <FabrikaIslemleri />;
-<<<<<<< HEAD
             case 'depo':
                 return <DepoIslemleri />;
-=======
             case 'kategori':
                 return <KategoriIslemleri />;
->>>>>>> 28774e865d2b56079cae01c24c15d79e4dde430e
-
             default:
                 return <MainDash />
         }
