@@ -10,6 +10,7 @@ import MagazaIslemleri from './MagazaIslemleri/MagazaIslemleri.jsx';
 import FabrikaIslemleri from './FabrikaIslemleri/FabrikaIslemleri.jsx';
 import DepoIslemleri from './DepoIslemleri/DepoIslemleri.jsx'
 import KategoriIslemleri from './KategoriIslemleri/KategoriIslemleri.jsx';
+import UrunIslemleri from './UrunIslemleri/UrunIslemleri.jsx'
 function AdminDashboard() {
 
     const [selectedScreen, setSelectedScreen] = useState('mainDash');
@@ -17,9 +18,7 @@ function AdminDashboard() {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        // Burada çıkış işlemleri yapılabilir (örneğin, token silme)
-        //alert('Çıkış yapılıyor...'); // Çıkış mesajı
-        navigate('/');  // Kullanıcıyı login sayfasına yönlendiriyoruz
+        navigate('/');
     };
 
     const renderScreen = () => {
@@ -36,6 +35,8 @@ function AdminDashboard() {
                 return <DepoIslemleri />;
             case 'kategori':
                 return <KategoriIslemleri />;
+            case 'urun':
+                return <UrunIslemleri />;
             default:
                 return <MainDash />
         }
