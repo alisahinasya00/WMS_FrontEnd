@@ -65,17 +65,8 @@ const SiparisIslemleri = () => {
     }
   };
 
-  const handleDetails = (islem) => {
-    const details = {};
-    if (selectedOperation === 'Giris') {
-      details.fabrikaAdi = fabrikalar?.find((f) => f.fabrikaId === islem.fabrikaId)?.fabrikaAdi || 'Bilinmiyor';
-    } else if (selectedOperation === 'Cikis') {
-      details.magazaAdi = magazalar?.find((m) => m.magazaId === islem.magazaId)?.magazaAdi || 'Bilinmiyor';
-    } else if (selectedOperation === 'Iade') {
-      details.fabrikaAdi = fabrikalar?.find((f) => f.fabrikaId === islem.fabrikaId)?.fabrikaAdi || 'Bilinmiyor';
-    }
-    setDetailData(details);
-    setIsModalOpen(true);
+  const handleDetails = () => {
+
   };
 
   const closeModal = () => {
@@ -113,7 +104,7 @@ const SiparisIslemleri = () => {
               <td>{islem.urunAdedi}</td>
               <td>{islem.islemTarihi}</td>
               <td>
-                <button onClick={() => handleDetails(islem)}>Detay</button>
+                <button onClick={() => handleDetails()}>Detay</button>
               </td>
             </tr>
           ))}

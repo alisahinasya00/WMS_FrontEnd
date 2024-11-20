@@ -10,6 +10,8 @@ import MagazaIslemleri from './MagazaIslemleri/MagazaIslemleri.jsx';
 import FabrikaIslemleri from './FabrikaIslemleri/FabrikaIslemleri.jsx';
 import DepoIslemleri from './DepoIslemleri/DepoIslemleri.jsx'
 import KategoriIslemleri from './KategoriIslemleri/KategoriIslemleri.jsx';
+import SiparisIslemleri from './SiparisIslemleri/SiparisIslemleri.jsx'
+import UrunIslemleri from './UrunIslemleri/UrunIslemleri.jsx'
 function AdminDashboard() {
 
     const [selectedScreen, setSelectedScreen] = useState('mainDash');
@@ -34,6 +36,10 @@ function AdminDashboard() {
                 return <DepoIslemleri />;
             case 'kategori':
                 return <KategoriIslemleri />;
+            case 'siparis':
+                return <SiparisIslemleri />;
+            case 'urun':
+                return <UrunIslemleri />;
             default:
                 return <MainDash />
         }
