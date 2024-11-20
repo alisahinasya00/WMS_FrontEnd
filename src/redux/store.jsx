@@ -5,6 +5,7 @@ import magazaSlice from './magazaSlice'
 import fabrikaSlice from './fabrikaSlice'
 import depoSlice from './depoSlice'
 import kategoriSlice from './kategoriSlice'
+import siparisSlice from './siparisSlice'
 
 export const store = configureStore({
         reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
                 magaza: magazaSlice,
                 fabrika: fabrikaSlice,
                 depo: depoSlice,
-                kategori: kategoriSlice
+                kategori: kategoriSlice,
+                siparis: siparisSlice
         },
 })
