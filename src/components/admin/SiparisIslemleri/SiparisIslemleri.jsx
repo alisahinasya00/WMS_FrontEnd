@@ -65,8 +65,22 @@ const SiparisIslemleri = () => {
     }
   };
 
-  const handleDetails = () => {
+  const handleDetails = (islem) => {
+    setDetailData({
+      magazaAdi: islem.magazaAdi,
+    });
+    setIsModalOpen(true);
+  };
 
+  // eslint-disable-next-line no-unused-vars
+  const handleDetails2 = (islem) => {
+    if (selectedOperation === 'Giris') {
+      const fabrika = fabrikalar.find((f) => f.fabrikaId === islem.fabrikaID);
+      setDetailData({
+        fabrikaAdi: fabrika ? fabrika.Adres : 'Bilinmiyor',
+      });
+    }
+    setIsModalOpen(true);
   };
 
   const closeModal = () => {
@@ -104,7 +118,7 @@ const SiparisIslemleri = () => {
               <td>{islem.urunAdedi}</td>
               <td>{islem.islemTarihi}</td>
               <td>
-                <button onClick={() => handleDetails()}>Detay</button>
+                <button onClick={() => handleDetails(islem)}>Detay</button>
               </td>
             </tr>
           ))}

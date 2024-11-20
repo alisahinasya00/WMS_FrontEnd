@@ -7,14 +7,14 @@ import './FabrikaIslemleri.css';
 const FabrikaIslemleri = () => {
     const dispatch = useDispatch();
     const { fabrikalar, status, error } = useSelector((state) => state.fabrika);
-    const [selectedFabrika, setSelectedFabrika] = useState(null); // Detay gösterimi için durum
-    const [showUpdateForm, setShowUpdateForm] = useState(false); // Güncelleme formu gösterimi için durum
-    const [formData, setFormData] = useState({}); // Güncelleme formu verisi
-    const [showDeleteConfirm, setShowDeleteConfirm] = useState(false); // Silme onayı durumu
-    const [deleteId, setDeleteId] = useState(null); // Silinecek fabrika ID'si
-    const [errorMessage, setErrorMessage] = useState(null); // Hata mesajı
-    const [showAddForm, setShowAddForm] = useState(false); // Yeni fabrika ekleme formu
-    const [newFabrika, setNewFabrika] = useState({ adres: '', telefonNo: '' }); // Yeni fabrika verisi
+    const [selectedFabrika, setSelectedFabrika] = useState(null);
+    const [showUpdateForm, setShowUpdateForm] = useState(false);
+    const [formData, setFormData] = useState({});
+    const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+    const [deleteId, setDeleteId] = useState(null);
+    const [errorMessage, setErrorMessage] = useState(null);
+    const [showAddForm, setShowAddForm] = useState(false);
+    const [newFabrika, setNewFabrika] = useState({ adres: '', telefonNo: '' });
 
     useEffect(() => {
         if (status === 'idle') {
@@ -110,7 +110,7 @@ const FabrikaIslemleri = () => {
     };
 
     const handleAddFabrikaClick = () => {
-        setShowAddForm(true); // Yeni fabrika ekleme formunu göster
+        setShowAddForm(true);
     };
 
     if (status === 'loading') return <div className="status">Loading...</div>;
@@ -123,8 +123,8 @@ const FabrikaIslemleri = () => {
 
             {/* Yeni Fabrika Ekleme Formu */}
             {showAddForm && (
-                <div className="update-modal">
-                    <div className="update-content">
+                <div className="modal">
+                    <div className="modal-content">
                         <h2>Yeni Fabrika Ekle</h2>
                         <form onSubmit={handleAddFabrikaSubmit}>
                             <label>Adres:</label>
@@ -171,8 +171,8 @@ const FabrikaIslemleri = () => {
 
             {/* Detay Modali */}
             {selectedFabrika && (
-                <div className="detail-modal">
-                    <div className="detail-content">
+                <div className="modal">
+                    <div className="modal-content">
                         <h2>Fabrika Detayları</h2>
                         <p><strong>Adres:</strong> {selectedFabrika.adres || 'Adres Bulunamadı'}</p>
                         <p><strong>Telefon:</strong> {selectedFabrika.telefonNo}</p>
@@ -183,8 +183,8 @@ const FabrikaIslemleri = () => {
 
             {/* Güncelleme Formu */}
             {showUpdateForm && (
-                <div className="update-modal">
-                    <div className="update-content">
+                <div className="modal">
+                    <div className="modal-content">
                         <h2>Fabrika Bilgilerini Güncelle</h2>
                         <form onSubmit={handleUpdateSubmit}>
                             <label>Adres:</label>
@@ -216,8 +216,8 @@ const FabrikaIslemleri = () => {
 
             {/* Silme Onayı */}
             {showDeleteConfirm && (
-                <div className="delete-confirm-modal">
-                    <div className="delete-confirm-content">
+                <div className="modal">
+                    <div className="modal-content">
                         <h2>Silmek İstediğinizden Emin Misiniz?</h2>
                         <button className="delete-confirm-button" onClick={handleDeleteConfirm}>Evet, Sil</button>
                         <button className="delete-cancel-button" onClick={handleDeleteCancel}>Hayır, Vazgeç</button>
