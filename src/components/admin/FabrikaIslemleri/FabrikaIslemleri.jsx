@@ -47,7 +47,7 @@ const FabrikaIslemleri = () => {
                 setShowDeleteConfirm(false);
                 dispatch(fetchFabrikalar());
             })
-            .catch(() => {
+            .catch((error) => {
                 setErrorMessage("Silme işlemi sırasında bir hata oluştu.");
                 setShowDeleteConfirm(false);
             });
@@ -78,7 +78,7 @@ const FabrikaIslemleri = () => {
                 setShowUpdateForm(false);
                 dispatch(fetchFabrikalar());
             })
-            .catch(() => {
+            .catch((error) => {
                 setErrorMessage("Güncelleme işlemi sırasında bir hata oluştu.");
             });
     };
@@ -88,6 +88,7 @@ const FabrikaIslemleri = () => {
         dispatch(fetchFabrikalar());
     };
 
+    // Yeni fabrika ekleme işlemi
     const handleAddFormChange = (e) => {
         const { name, value } = e.target;
         setNewFabrika((prevData) => ({
@@ -103,7 +104,7 @@ const FabrikaIslemleri = () => {
                 setShowAddForm(false);
                 dispatch(fetchFabrikalar());
             })
-            .catch(() => {
+            .catch((error) => {
                 setErrorMessage("Fabrika eklenirken bir hata oluştu.");
             });
     };
@@ -118,8 +119,9 @@ const FabrikaIslemleri = () => {
     return (
         <div className="fabrika-container">
             <h1>Fabrikalar</h1>
-            <button className="add-button" onClick={handleAddFabrikaClick}>Yeni Fabrika Ekle</button>
+            <button className="update-button" onClick={handleAddFabrikaClick}>Yeni Fabrika Ekle</button>
 
+            {/* Yeni Fabrika Ekleme Formu */}
             {showAddForm && (
                 <div className="modal">
                     <div className="modal-content">
@@ -152,31 +154,84 @@ const FabrikaIslemleri = () => {
                 </div>
             )}
 
-            <div className="fabrika-list">
+            <ul className="fabrika-list">
                 {fabrikalar.map((fabrika) => (
-                    <div key={fabrika.fabrikaId} className="fabrika-card">
-                        <strong>{fabrika.adres || 'Adres Bulunamadı'}</strong>
+                    <li key={fabrika.fabrikaId} className="fabrika-card">
+                        <div className="fabrika-info">
+                            <strong>{fabrika.adres || 'Adres Bulunamadı'}</strong>
+                        </div>
                         <div className="fabrika-actions">
                             <button className="detail-button" onClick={() => handleDetail(fabrika)}>Detay</button>
                             <button className="update-button" onClick={() => handleUpdate(fabrika.fabrikaId)}>Güncelle</button>
                             <button className="delete-button" onClick={() => handleDelete(fabrika.fabrikaId)}>Sil</button>
                         </div>
-                    </div>
+                    </li>
                 ))}
-            </div>
+            </ul>
 
+            {/* Detay Modali */}
             {selectedFabrika && (
                 <div className="modal">
                     <div className="modal-content">
-                        <button className="close-icon" onClick={handleCloseDetail}>&times;</button>
                         <h2>Fabrika Detayları</h2>
                         <p><strong>Adres:</strong> {selectedFabrika.adres || 'Adres Bulunamadı'}</p>
                         <p><strong>Telefon:</strong> {selectedFabrika.telefonNo}</p>
+                        <button className="close-button" onClick={handleCloseDetail}>Kapat</button>
                     </div>
                 </div>
             )}
 
-            {/* Güncelleme ve diğer modal kodları yukarıdaki ile benzer şekilde tasarlanmıştır */}
+            {/* Güncelleme Formu */}
+            {showUpdateForm && (
+                <div className="modal">
+                    <div className="modal-content">
+                        <h2>Fabrika Bilgilerini Güncelle</h2>
+                        <form onSubmit={handleUpdateSubmit}>
+                            <label>Adres:</label>
+                            <input
+                                type="text"
+                                name="adres"
+                                value={formData.adres || ''}
+                                onChange={handleInputChange}
+                            />
+                            <label>Telefon No:</label>
+                            <input
+                                type="text"
+                                name="telefonNo"
+                                value={formData.telefonNo || ''}
+                                onChange={handleInputChange}
+                            />
+                            <button type="submit" className="update-submit-button">Güncelle</button>
+                            <button
+                                type="button"
+                                className="close-button"
+                                onClick={() => setShowUpdateForm(false)}
+                            >
+                                Kapat
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            )}
+
+            {/* Silme Onayı */}
+            {showDeleteConfirm && (
+                <div className="modal">
+                    <div className="modal-content">
+                        <h2>Silmek İstediğinizden Emin Misiniz?</h2>
+                        <button className="delete-confirm-button" onClick={handleDeleteConfirm}>Evet, Sil</button>
+                        <button className="delete-cancel-button" onClick={handleDeleteCancel}>Hayır, Vazgeç</button>
+                    </div>
+                </div>
+            )}
+
+            {/* Hata Mesajı */}
+            {errorMessage && (
+                <div className="error-message">
+                    <p>{errorMessage}</p>
+                    <button onClick={handleErrorMessageClose}>Kapat</button>
+                </div>
+            )}
         </div>
     );
 };
