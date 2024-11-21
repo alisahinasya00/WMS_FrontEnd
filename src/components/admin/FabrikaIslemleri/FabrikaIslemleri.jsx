@@ -119,12 +119,12 @@ const FabrikaIslemleri = () => {
     return (
         <div className="fabrika-container">
             <h1>Fabrikalar</h1>
-            <button className="update-button" onClick={handleAddFabrikaClick}>Yeni Fabrika Ekle</button>
+            <button className="fabrika-add-button" onClick={handleAddFabrikaClick}>Yeni Fabrika Ekle</button>
 
             {/* Yeni Fabrika Ekleme Formu */}
             {showAddForm && (
-                <div className="modal">
-                    <div className="modal-content">
+                <div className="fabrika-modal">
+                    <div className="fabrika-modal-content">
                         <h2>Yeni Fabrika Ekle</h2>
                         <form onSubmit={handleAddFabrikaSubmit}>
                             <label>Adres:</label>
@@ -141,10 +141,10 @@ const FabrikaIslemleri = () => {
                                 value={newFabrika.telefonNo}
                                 onChange={handleAddFormChange}
                             />
-                            <button type="submit" className="update-submit-button">Ekle</button>
+                            <button type="submit" className="fabrika-update-submit-button">Ekle</button>
                             <button
                                 type="button"
-                                className="close-button"
+                                className="fabrika-close-button"
                                 onClick={() => setShowAddForm(false)}
                             >
                                 Kapat
@@ -161,9 +161,9 @@ const FabrikaIslemleri = () => {
                             <strong>{fabrika.adres || 'Adres Bulunamadı'}</strong>
                         </div>
                         <div className="fabrika-actions">
-                            <button className="detail-button" onClick={() => handleDetail(fabrika)}>Detay</button>
-                            <button className="update-button" onClick={() => handleUpdate(fabrika.fabrikaId)}>Güncelle</button>
-                            <button className="delete-button" onClick={() => handleDelete(fabrika.fabrikaId)}>Sil</button>
+                            <button className="fabrika-detail-button" onClick={() => handleDetail(fabrika)}>Detay</button>
+                            <button className="fabrika-update-button" onClick={() => handleUpdate(fabrika.fabrikaId)}>Güncelle</button>
+                            <button className="fabrika-delete-button" onClick={() => handleDelete(fabrika.fabrikaId)}>Sil</button>
                         </div>
                     </li>
                 ))}
@@ -171,20 +171,20 @@ const FabrikaIslemleri = () => {
 
             {/* Detay Modali */}
             {selectedFabrika && (
-                <div className="detail-modal">
-                    <div className="detail-content">
+                <div className="fabrika-detail-modal">
+                    <div className="fabrika-detail-content">
                         <h2>Fabrika Detayları</h2>
                         <p><strong>Adres:</strong> {selectedFabrika.adres || 'Adres Bulunamadı'}</p>
                         <p><strong>Telefon:</strong> {selectedFabrika.telefonNo}</p>
-                        <button className="close-button" onClick={handleCloseDetail}>Kapat</button>
+                        <button className="fabrika-close-button" onClick={handleCloseDetail}>Kapat</button>
                     </div>
                 </div>
             )}
 
             {/* Güncelleme Formu */}
             {showUpdateForm && (
-                <div className="update-modal">
-                    <div className="update-content">
+                <div className="fabrika-update-modal">
+                    <div className="fabrika-update-content">
                         <h2>Fabrika Bilgilerini Güncelle</h2>
                         <form onSubmit={handleUpdateSubmit}>
                             <label>Adres:</label>
@@ -201,10 +201,10 @@ const FabrikaIslemleri = () => {
                                 value={formData.telefonNo || ''}
                                 onChange={handleInputChange}
                             />
-                            <button type="submit" className="update-submit-button">Güncelle</button>
+                            <button type="submit" className="fabrika-update-submit-button">Güncelle</button>
                             <button
                                 type="button"
-                                className="close-button"
+                                className="fabrika-close-button"
                                 onClick={() => setShowUpdateForm(false)}
                             >
                                 Kapat
@@ -216,11 +216,11 @@ const FabrikaIslemleri = () => {
 
             {/* Silme Onayı */}
             {showDeleteConfirm && (
-                <div className="modal">
-                    <div className="modal-content">
+                <div className="fabrika-modal">
+                    <div className="fabrika-modal-content">
                         <h2>Silmek İstediğinizden Emin Misiniz?</h2>
-                        <button className="delete-confirm-button" onClick={handleDeleteConfirm}>Evet, Sil</button>
-                        <button className="delete-cancel-button" onClick={handleDeleteCancel}>Hayır, Vazgeç</button>
+                        <button className="fabrika-delete-confirm-button" onClick={handleDeleteConfirm}>Evet, Sil</button>
+                        <button className="fabrika-delete-cancel-button" onClick={handleDeleteCancel}>Hayır, Vazgeç</button>
                     </div>
                 </div>
             )}

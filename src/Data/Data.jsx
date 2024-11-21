@@ -85,7 +85,7 @@ export const CardsData = [
         },
         barValue: 80,
         value: "14,270",
-        png: FaFileInvoiceDollar,
+        png: GrTransaction,
         series: [
             {
                 name: "Sipariş",

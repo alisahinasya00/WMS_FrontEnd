@@ -8,7 +8,6 @@ import './KategoriIslemleri.css';
 const KategoriIslemleri = () => {
     const dispatch = useDispatch();
     const { kategoriler, status, error } = useSelector((state) => state.kategori);
-
     const [formData, setFormData] = useState({ kategoriAdi: '' }); // Güncelleme ve ekleme formu verisi
     const [showUpdateForm, setShowUpdateForm] = useState(false); // Güncelleme formu gösterimi
     const [showAddForm, setShowAddForm] = useState(false); // Yeni kategori ekleme formu
@@ -42,9 +41,6 @@ const KategoriIslemleri = () => {
                 console.error('Kategori eklenirken bir hata oluştu:', error);
             });
     };
-
-
-
 
     const handleUpdateKategoriSubmit = async (e) => {
         e.preventDefault();
@@ -104,7 +100,7 @@ const KategoriIslemleri = () => {
     return (
         <div className="kategori-container">
             <h1>Kategoriler</h1>
-            <button className="add-button" onClick={() => setShowAddForm(true)}>Yeni Kategori Ekle</button>
+            <button className="kategori-add-button" onClick={() => setShowAddForm(true)}>Yeni Kategori Ekle</button>
             <ul className="kategori-list">
                 {kategoriler.map((kategori) => (
                     <li key={kategori.kategoriId} className="kategori-card">
@@ -112,8 +108,8 @@ const KategoriIslemleri = () => {
                             <strong>{kategori.kategoriAdi}</strong>
                         </div>
                         <div className="kategori-actions">
-                            <button className="update-button" onClick={() => handleUpdate(kategori.kategoriId, kategori.kategoriAdi)}>Güncelle</button>
-                            <button className="delete-button" onClick={() => handleDelete(kategori.kategoriId)}>Sil</button>
+                            <button className="kategori-update-button" onClick={() => handleUpdate(kategori.kategoriId, kategori.kategoriAdi)}>Güncelle</button>
+                            <button className="kategori-delete-button" onClick={() => handleDelete(kategori.kategoriId)}>Sil</button>
                         </div>
                     </li>
                 ))}
@@ -121,8 +117,8 @@ const KategoriIslemleri = () => {
 
             {/* Yeni Kategori Ekleme Formu */}
             {showAddForm && (
-                <div className="modal">
-                    <div className="modal-content">
+                <div className="kategori-modal">
+                    <div className="kategori-modal-content">
                         <h2>Yeni Kategori Ekle</h2>
                         <form onSubmit={handleAddKategoriSubmit}>
                             <label>Kategori Adı:</label>
@@ -132,10 +128,10 @@ const KategoriIslemleri = () => {
                                 value={formData.kategoriAdi}
                                 onChange={handleInputChange}
                             />
-                            <button type="submit" className="submit-button">Ekle</button>
+                            <button type="submit" className="kategori-update-submit-button">Ekle</button>
                             <button
                                 type="button"
-                                className="close-button"
+                                className="kategori-close-button"
                                 onClick={() => setShowAddForm(false)}
                             >
                                 Kapat
@@ -147,8 +143,8 @@ const KategoriIslemleri = () => {
 
             {/* Güncelleme Formu */}
             {showUpdateForm && (
-                <div className="modal">
-                    <div className="modal-content">
+                <div className="kategori-update-modal">
+                    <div className="kategori-update-content">
                         <h2>Kategori Güncelle</h2>
                         <form onSubmit={handleUpdateKategoriSubmit}>
                             <label>Kategori Adı:</label>
@@ -158,10 +154,10 @@ const KategoriIslemleri = () => {
                                 value={formData.kategoriAdi}
                                 onChange={handleInputChange}
                             />
-                            <button type="submit" className="submit-button">Güncelle</button>
+                            <button type="submit" className="kategori-update-submit-button">Güncelle</button>
                             <button
                                 type="button"
-                                className="close-button"
+                                className="kategori-close-button"
                                 onClick={() => setShowUpdateForm(false)}
                             >
                                 Kapat
@@ -173,11 +169,11 @@ const KategoriIslemleri = () => {
 
             {/* Silme Onayı */}
             {showDeleteConfirm && (
-                <div className="delete-confirm-modal">
-                    <div className="delete-confirm-content">
+                <div className="kategori-delete-confirm-modal">
+                    <div className="kategori-delete-confirm-content">
                         <h2>Silmek İstediğinizden Emin Misiniz?</h2>
-                        <button className="delete-confirm-button" onClick={handleDeleteConfirm}>Evet, Sil</button>
-                        <button className="delete-cancel-button" onClick={() => setShowDeleteConfirm(false)}>Hayır, Vazgeç</button>
+                        <button className="kategori-delete-confirm-button" onClick={handleDeleteConfirm}>Evet, Sil</button>
+                        <button className="kategori-delete-cancel-button" onClick={() => setShowDeleteConfirm(false)}>Hayır, Vazgeç</button>
                     </div>
                 </div>
             )}

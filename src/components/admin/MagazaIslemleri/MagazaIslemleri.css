@@ -11,20 +11,20 @@
 }
 
 .magaza-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid */
+    display: flex;
+    flex-wrap: wrap;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 16px;
-    padding: 0;
-    margin-top: 20px;
     list-style-type: none;
 }
 
 .magaza-card {
-    background: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    border: 1px solid #ccc;
     padding: 16px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    background: #f9f9f9;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -47,16 +47,17 @@
     gap: 8px;
 }
 
-.button {
+.magaza-button {
     padding: 8px 12px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-size: 14px;
     transition: background-color 0.3s ease;
+    margin: 10px;
 }
 
-.detail-button {
+.magaza-detail-button {
     background-color: #007bff;
     color: white;
     padding: 8px 16px;
@@ -66,41 +67,67 @@
     font-size: 14px;
     font-weight: bold;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    margin: 5px;
 }
 
-.detail-button:hover {
+.magaza-detail-button:hover {
     background-color: #0056b3;
     transform: scale(1.05); /* Slightly enlarge the button on hover */
 }
 
-.detail-button:active {
+.magaza-detail-button:active {
     background-color: #004494;
     transform: scale(0.98); /* Slightly shrink on click */
 }
 
 
-.add-button {
-    background-color: #ffa500;
+.magaza-add-button {
+    display: block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
-.update-button {
+.magaza-update-button {
     background-color: #ffa500;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin: 5px;
 }
 
-.update-button:hover {
+.magaza-update-button:hover {
     background-color: #e59400;
 }
 
-.delete-button {
+.magaza-delete-button {
     background-color: #f44336;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin: 5px;
 }
 
-.delete-button:hover {
+.magaza-delete-button:hover {
     background-color: #d73227;
 }
 
 /* Modal Genel Tasarımı */
-.modal {
+.magaza-modal {
     position: fixed;
     top: 0;
     left: 0;
@@ -113,7 +140,7 @@
     z-index: 1000;
 }
 
-.modal-content {
+.magaza-modal-content {
     background: white;
     padding: 20px;
     border-radius: 8px;
@@ -122,7 +149,7 @@
     text-align: left;
 }
 
-.close-button {
+.magaza-close-button {
     display: block;
     margin-top: 20px;
     padding: 10px 20px;
@@ -133,18 +160,11 @@
     cursor: pointer;
 }
 
-.add-button {
-    display: block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #f44336;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+.magaza-close-button:hover {
+    background-color: #d73227;
 }
 
-.close-button:hover {
+.magaza-close-button:hover {
     background-color: #d73227;
 }
 
@@ -163,11 +183,11 @@ form label {
 }
 
 /* Yeni Mağaza Ekleme ve Güncelleme Formu */
-.update-content, .add-content {
+.magaza-update-content, .magaza-add-content {
     width: 100%;
 }
 
-.update-submit-button, .add-submit-button {
+.magaza-update-submit-button, .magaza-add-submit-button {
     background-color: #007bff;
     color: white;
     border: none;
@@ -176,12 +196,12 @@ form label {
     width: 100%;
 }
 
-.update-submit-button:hover, .add-submit-button:hover {
+.magaza-update-submit-button:hover, .magaza-add-submit-button:hover {
     background-color: #0056b3;
 }
 
 /* Silme Onayı */
-.delete-confirm-modal {
+.magaza-delete-confirm-modal {
     position: fixed;
     top: 0;
     left: 0;
@@ -194,7 +214,7 @@ form label {
     z-index: 1000;
 }
 
-.delete-confirm-content {
+.magaza-delete-confirm-content {
     background: white;
     padding: 20px;
     border-radius: 8px;
@@ -203,33 +223,33 @@ form label {
     text-align: center;
 }
 
-.delete-confirm-button,
-.delete-cancel-button {
+.magaza-delete-confirm-button,
+.magaza-delete-cancel-button {
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
 }
 
-.delete-confirm-button {
+.magaza-delete-confirm-button {
     background-color: #f44336;
     color: white;
 }
 
-.delete-confirm-button:hover {
+.magaza-delete-confirm-button:hover {
     background-color: #d73227;
 }
 
-.delete-cancel-button {
+.magaza-delete-cancel-button {
     background-color: #007bff;
     color: white;
 }
 
-.delete-cancel-button:hover {
+.magaza-delete-cancel-button:hover {
     background-color: #0056b3;
 }
 
-.detail-modal {
+.magaza-detail-modal {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -243,7 +263,7 @@ form label {
     height: 100vh;
 }
 
-.detail-content {
+.magaza-detail-content {
     background: white;
     padding: 20px;
     border-radius: 8px;
@@ -253,7 +273,7 @@ form label {
 }
 
 /* Güncelleme Modalı (Detay gibi Ortada) */
-.update-modal {
+.magaza-update-modal {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -268,7 +288,7 @@ form label {
 }
 
 /* Güncelleme Modal İçeriği */
-.update-content {
+.magaza-update-content {
     background: white;
     padding: 20px;
     border-radius: 8px;

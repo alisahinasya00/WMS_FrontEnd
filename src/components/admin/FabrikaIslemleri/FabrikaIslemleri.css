@@ -1,23 +1,36 @@
 .fabrika-container {
     padding: 20px;
+    
 }
 
 .fabrika-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    list-style-type: none;
 }
 
 .fabrika-card {
     border: 1px solid #ccc;
-    padding: 20px;
+    padding: 16px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 300px;
     background: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
-.modal {
+.fabrika-card:hover {
+    transform: translateY(-5px); /* Slightly lift the card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Increase shadow size */
+    background-color: #f1f1f1; /* Slightly change background color */
+}
+
+.fabrika-modal {
     position: fixed;
     top: 0;
     left: 0;
@@ -30,14 +43,14 @@
     z-index: 9999;
 }
 
-.modal-content {
+.fabrika-modal-content {
     background: white;
     padding: 20px;
     border-radius: 8px;
     position: relative;
 }
 
-.close-icon {
+.fabrika-close-icon {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -48,7 +61,7 @@
 }
 
 
-.detail-modal {
+.fabrika-detail-modal {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -62,7 +75,7 @@
     height: 100vh;
 }
 
-.detail-content {
+.fabrika-detail-content {
     background: white;
     padding: 20px;
     border-radius: 8px;
@@ -72,7 +85,7 @@
 }
 
 /* Güncelleme Modalı (Detay gibi Ortada) */
-.update-modal {
+.fabrika-update-modal {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -87,11 +100,138 @@
 }
 
 /* Güncelleme Modal İçeriği */
-.update-content {
+.fabrika-update-content {
     background: white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     width: 400px;
     text-align: left;
+}
+
+.fabrika-button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    margin: 10px;
+}
+
+.fabrika-detail-button {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin: 5px;
+}
+
+.fabrika-detail-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+}
+
+.fabrika-detail-button:active {
+    background-color: #004494;
+    transform: scale(0.98); /* Slightly shrink on click */
+}
+
+.fabrika-update-button {
+    background-color: #ffa500;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin: 5px;
+}
+
+.fabrika-update-button:hover {
+    background-color: #e59400;
+}
+
+.fabrika-delete-button {
+    background-color: #f44336;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin: 5px;
+}
+
+.fabrika-delete-button:hover {
+    background-color: #d73227;
+}
+.fabrika-close-button {
+    display: block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.fabrika-close-button:hover {
+    background-color: #d73227;
+}
+
+.fabrika-delete-confirm-button,
+.fabrika-delete-cancel-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.fabrika-delete-confirm-button {
+    background-color: #f44336;
+    color: white;
+}
+
+.fabrika-delete-confirm-button:hover {
+    background-color: #d73227;
+}
+
+.fabrika-delete-cancel-button {
+    background-color: #007bff;
+    color: white;
+}
+
+.fabrika-delete-cancel-button:hover {
+    background-color: #0056b3;
+}
+
+.fabrika-add-button {
+    display: block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.fabrika-update-submit-button, .fabrika-add-submit-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    width: 100%;
 }

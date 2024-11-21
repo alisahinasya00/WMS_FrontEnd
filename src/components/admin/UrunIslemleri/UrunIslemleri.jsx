@@ -91,9 +91,9 @@ const UrunIslemleri = () => {
                             <td>{urun.stokMiktari}</td>
                             <td>{getKonumBilgisi(urun.konumID)}</td>
                             <td>
-                                <div className="button-group">
-                                    <button className="btn btn-detail" onClick={() => openModal(urun)}>Detay</button>
-                                    <button className="btn btn-delete" onClick={() => openDeleteModal(urun)}>Sil</button>
+                                <div className="urun-button-group">
+                                    <button className="urun-btn urun-btn-detail" onClick={() => openModal(urun)}>Detay</button>
+                                    <button className="urun-btn urun-btn-delete" onClick={() => openDeleteModal(urun)}>Sil</button>
                                 </div>
                             </td>
                         </tr>
@@ -103,9 +103,9 @@ const UrunIslemleri = () => {
 
             {/* Modal Bileşeni */}
             {isModalOpen && selectedUrun && (
-                <div className="modal-overlay" onClick={closeModal}>
-                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                        <button className="close-btn" onClick={closeModal}>X</button>
+                <div className="urun-modal-overlay" onClick={closeModal}>
+                    <div className="urun-modal-content" onClick={(e) => e.stopPropagation()}>
+                        <button className="urun-close-btn" onClick={closeModal}>X</button>
                         <h2>{selectedUrun.adi}</h2>
                         <p><strong>Kategori:</strong> {selectedUrun.kategoriAdi}</p>
                         <p><strong>Stok Miktarı:</strong> {selectedUrun.stokMiktari}</p>
@@ -118,14 +118,14 @@ const UrunIslemleri = () => {
 
             {/* Silme Onay Modal'ı */}
             {isDeleteModalOpen && selectedUrun && (
-                <div className="modal-overlay" onClick={closeDeleteModal}>
-                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                        <button className="close-btn" onClick={closeDeleteModal}>X</button>
+                <div className="urun-modal-overlay" onClick={closeDeleteModal}>
+                    <div className="urun-modal-content" onClick={(e) => e.stopPropagation()}>
+                        <button className="urun-close-btn" onClick={closeDeleteModal}>X</button>
                         <h2>Ürünü Sil</h2>
                         <p>{selectedUrun.adi} adlı ürünü silmek istediğinizden emin misiniz?</p>
-                        <div className="modal-buttons">
-                            <button className="btn btn-confirm" onClick={() => handleDelete(selectedUrun.urunId)}>Evet, Sil</button>
-                            <button className="btn btn-cancel" onClick={closeDeleteModal}>Hayır, Vazgeç</button>
+                        <div className="urun-modal-buttons">
+                            <button className="urun-btn urun-btn-confirm" onClick={() => handleDelete(selectedUrun.urunId)}>Evet, Sil</button>
+                            <button className="urun-btn urun-btn-cancel" onClick={closeDeleteModal}>Hayır, Vazgeç</button>
                         </div>
                     </div>
                 </div>

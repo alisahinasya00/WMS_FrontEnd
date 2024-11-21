@@ -12,11 +12,10 @@
 }
 
 .kategori-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid */
+    display: flex;
+    flex-wrap: wrap;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 16px;
-    padding: 0;
-    margin-top: 20px;
     list-style-type: none;
 }
 
@@ -48,34 +47,43 @@
     gap: 8px;
 }
 
-.update-button,
-.delete-button {
-    padding: 8px 12px;
+.kategori-update-button {
+    background-color: #ffa500;
+    color: white;
+    padding: 8px 16px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-size: 14px;
-    transition: background-color 0.3s ease;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin: 5px;
 }
 
-.update-button {
-    background-color: #ffa500;
-}
-
-.update-button:hover {
+.kategori-update-button:hover {
     background-color: #e59400;
 }
 
-.delete-button {
+.kategori-delete-button {
     background-color: #f44336;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin: 5px;
 }
 
-.delete-button:hover {
+.kategori-delete-button:hover {
     background-color: #d73227;
 }
 
+
 /* Modal for Update Form */
-.update-modal {
+.kategori-update-modal {
     position: fixed;
     top: 0;
     left: 0;
@@ -89,7 +97,7 @@
     z-index: 1000;
 }
 
-.update-content {
+.kategori-update-content {
     background: white;
     padding: 20px;
     border-radius: 8px;
@@ -101,7 +109,7 @@
     box-sizing: border-box;
 }
 
-.update-content input {
+.kategori-update-content input {
     width: 100%;
     padding: 8px;
     margin: 8px 0;
@@ -109,21 +117,21 @@
     border-radius: 4px;
 }
 
-.update-submit-button {
+.kategori-update-submit-button, .kategori-add-submit-button  {
     background-color: #007bff;
     color: white;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    width: 100%;
 }
 
-.update-submit-button:hover {
+.kategori-update-submit-button:hover {
     background-color: #0056b3;
 }
 
 /* Deletion Confirmation */
-.delete-confirm-modal {
+.kategori-delete-confirm-modal {
     position: fixed;
     top: 0;
     left: 0;
@@ -136,7 +144,7 @@
     z-index: 1000;
 }
 
-.delete-confirm-content {
+.kategori-delete-confirm-content {
     background: white;
     padding: 20px;
     border-radius: 8px;
@@ -145,29 +153,29 @@
     text-align: center;
 }
 
-.delete-confirm-button,
-.delete-cancel-button {
+.kategori-delete-confirm-button,
+.kategori-delete-cancel-button {
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
 }
 
-.delete-confirm-button {
+.kategori-delete-confirm-button {
     background-color: #f44336;
     color: white;
 }
 
-.delete-confirm-button:hover {
+.kategori-delete-confirm-button:hover {
     background-color: #d73227;
 }
 
-.delete-cancel-button {
+.kategori-delete-cancel-button {
     background-color: #007bff;
     color: white;
 }
 
-.delete-cancel-button:hover {
+.kategori-delete-cancel-button:hover {
     background-color: #0056b3;
 }
 
@@ -186,7 +194,10 @@ form label {
 }
 
 /* Modal for Add Form */
-.add-button {
+.kategori-add-button {
+    display: block;
+    margin-top: 20px;
+    padding: 10px 20px;
     background-color: #f44336;
     color: white;
     border: none;
@@ -194,6 +205,75 @@ form label {
     cursor: pointer;
 }
 
-.add-button:hover {
+.kategori-add-button:hover {
     background-color: #d73227;
+}
+
+.kategori-modal {
+    position: fixed; /* Sabit pozisyon */
+    top: 50%; /* Yükseklik merkezleme */
+    left: 50%; /* Genişlik merkezleme */
+    transform: translate(-50%, -50%); /* Gerçek merkezleme */
+    background: white; /* Beyaz arka plan */
+    border-radius: 8px; /* Yuvarlatılmış köşeler */
+    padding: 20px; /* İç boşluk */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Gölge efekti */
+    z-index: 1000; /* Diğer içeriklerin üstünde */
+    width: 400px; /* Genişlik */
+    max-width: 90%; /* Küçük ekranlarda genişliği sınırla */
+}
+
+.kategori-modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.kategori-modal input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.kategori-modal button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.kategori-close-button {
+    display: block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.kategori-close-button:hover {
+    background-color: #d73227;
+}
+
+.kategori-button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    margin: 10px;
+}
+
+.kategori-update-submit-button, .kategori-add-submit-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    width: 100%;
 }

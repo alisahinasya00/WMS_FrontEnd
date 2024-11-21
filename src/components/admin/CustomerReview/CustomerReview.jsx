@@ -5,7 +5,7 @@ const CustomerReview = () => {
     const data = {
         series: [
             {
-                name: "Review",
+                name: "Çalışan İncelemesi",
                 data: [10, 50, 30, 90, 40, 120, 100],
             },
         ],
