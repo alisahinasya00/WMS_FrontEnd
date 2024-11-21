@@ -9,7 +9,6 @@ const CalisanIslemleri = () => {
     const roles = [
         { rolId: 2, rolAdi: 'Çalışan' },
         { rolId: 1, rolAdi: 'Yönetici' }
-
     ];
 
     const dispatch = useDispatch();
@@ -149,7 +148,7 @@ const CalisanIslemleri = () => {
     return (
         <div className="calisan-container">
             <h1>Çalışanlar</h1>
-            <button className="update-button" onClick={handleAddCalisanClick}>Yeni Çalışan Ekle</button>
+            <button className="calisan-update-button" onClick={handleAddCalisanClick}>Yeni Çalışan Ekle</button>
             <ul className="calisan-list">
                 {calisanlar.map((calisan) => (
                     <li key={calisan.calisanId} className="calisan-card">
@@ -157,9 +156,9 @@ const CalisanIslemleri = () => {
                             <strong>{calisan.adi} {calisan.soyadi}</strong>
                         </div>
                         <div className="calisan-actions">
-                            <button className="detail-button" onClick={() => handleDetail(calisan)}>Detay</button>
-                            <button className="update-button" onClick={() => handleUpdate(calisan.calisanId)}>Güncelle</button>
-                            <button className="delete-button" onClick={() => handleDelete(calisan.calisanId)}>Sil</button>
+                            <button className="calisan-detail-button" onClick={() => handleDetail(calisan)}>Detay</button>
+                            <button className="calisan-update-button" onClick={() => handleUpdate(calisan.calisanId)}>Güncelle</button>
+                            <button className="calisan-delete-button" onClick={() => handleDelete(calisan.calisanId)}>Sil</button>
                         </div>
                     </li>
                 ))}
@@ -168,8 +167,8 @@ const CalisanIslemleri = () => {
 
             {/* Yeni çalışan Ekleme Formu */}
             {showAddForm && (
-                <div className="update-modal">
-                    <div className="update-content">
+                <div className="calisan-update-modal">
+                    <div className="calisan-update-content">
                         <h2>Yeni Çalışan Ekle</h2>
                         <form onSubmit={handleAddCalisanSubmit}>
                             <label>Adı:</label>
@@ -245,11 +244,11 @@ const CalisanIslemleri = () => {
                                 />
                                 Çalışan
                             </div>
-                            <button type="submit" className="update-submit-button">Ekle</button>
+                            <button type="submit" className="calisan-update-submit-button">Ekle</button>
 
                             <button
                                 type="button"
-                                className="close-button"
+                                className="calisan-close-button"
                                 onClick={() => setShowAddForm(false)
                                 }
                             >
@@ -262,8 +261,8 @@ const CalisanIslemleri = () => {
 
             {/* Detay Modali */}
             {selectedCalisan && (
-                <div className="detail-modal">
-                    <div className="detail-content">
+                <div className="calisan-detail-modal">
+                    <div className="calisan-detail-content">
                         <h2>Çalışan Detayları</h2>
                         <p><strong>Ad Soyad:</strong> {selectedCalisan.adi} {selectedCalisan.soyadi}</p>
                         <p><strong>Rol:</strong> {selectedCalisan.rolAdi}</p>
@@ -273,15 +272,15 @@ const CalisanIslemleri = () => {
                         <p><strong>Maaş:</strong> {selectedCalisan.maas}₺</p>
                         <p><strong>İşe Giriş Tarihi:</strong> {new Date(selectedCalisan.iseGirisTarihi).toLocaleDateString()}</p>
                         <p><strong>Şifre:</strong> {selectedCalisan.sifre}₺</p>
-                        <button className="close-button" onClick={handleCloseDetail}>Kapat</button>
+                        <button className="calisan-close-button" onClick={handleCloseDetail}>Kapat</button>
                     </div>
                 </div>
             )}
 
             {/* Güncelleme Formu */}
             {showUpdateForm && (
-                <div className="update-modal">
-                    <div className="update-content">
+                <div className="calisan-update-modal">
+                    <div className="calisan-update-content">
                         <h2>Çalışan Bilgilerini Güncelle</h2>
                         <form onSubmit={handleUpdateSubmit}>
                             <label>Adı:</label>
@@ -361,10 +360,10 @@ const CalisanIslemleri = () => {
                                 value={formData.sifre}
                                 onChange={handleInputChange}
                             />
-                            <button type="submit" className="update-submit-button">Güncelle</button>
+                            <button type="submit" className="calisan-update-submit-button">Güncelle</button>
                             <button
                                 type="button"
-                                className="close-button"
+                                className="calisan-close-button"
                                 onClick={() => setShowUpdateForm(false)}
                             >
                                 Kapat
@@ -378,11 +377,11 @@ const CalisanIslemleri = () => {
             {/* Silme Onayı */}
             {
                 showDeleteConfirm && (
-                    <div className="delete-confirm-modal">
-                        <div className="delete-confirm-content">
+                    <div className="calisan-delete-confirm-modal">
+                        <div className="calisan-delete-confirm-content">
                             <h2>Silmek İstediğinizden Emin Misiniz?</h2>
-                            <button className="delete-confirm-button" onClick={handleDeleteConfirm}>Evet, Sil</button>
-                            <button className="delete-cancel-button" onClick={handleDeleteCancel}>Hayır, Vazgeç</button>
+                            <button className="calisan-delete-confirm-button" onClick={handleDeleteConfirm}>Evet, Sil</button>
+                            <button className="calisan-delete-cancel-button" onClick={handleDeleteCancel}>Hayır, Vazgeç</button>
                         </div>
                     </div>
                 )

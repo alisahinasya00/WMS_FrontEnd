@@ -112,7 +112,7 @@ const MagazaIslemleri = () => {
     return (
         <div className="magaza-container">
             <h1>Mağazalar</h1>
-            <button className="add-button" onClick={handleAddMagazaClick}>Yeni Mağaza Ekle</button>
+            <button className="magaza-add-button" onClick={handleAddMagazaClick}>Yeni Mağaza Ekle</button>
             <ul className="magaza-list">
                 {magazalar.map((magaza) => (
                     <li key={magaza.magazaId} className="magaza-card">
@@ -123,9 +123,9 @@ const MagazaIslemleri = () => {
                             <strong>{magaza.telefonNo}</strong>
                         </div>
                         <div className="magaza-actions">
-                            <button className="detail-button" onClick={() => handleDetail(magaza)}>Detay</button>
-                            <button className="update-button" onClick={() => handleUpdate(magaza.magazaId)}>Güncelle</button>
-                            <button className="delete-button" onClick={() => handleDelete(magaza.magazaId)}>Sil</button>
+                            <button className="magaza-detail-button" onClick={() => handleDetail(magaza)}>Detay</button>
+                            <button className="magaza-update-button" onClick={() => handleUpdate(magaza.magazaId)}>Güncelle</button>
+                            <button className="magaza-delete-button" onClick={() => handleDelete(magaza.magazaId)}>Sil</button>
                         </div>
                     </li>
                 ))}
@@ -133,8 +133,8 @@ const MagazaIslemleri = () => {
 
             {/* Yeni Mağaza Ekleme Formu (Modal olarak açılıyor) */}
             {showAddForm && (
-                <div className="modal">
-                    <div className="modal-content">
+                <div className="magaza-modal">
+                    <div className="magaza-modal-content">
                         <h2>Yeni Mağaza Ekle</h2>
                         <form onSubmit={handleAddMagazaSubmit}>
                             <label>Mağaza Adı:</label>
@@ -172,10 +172,10 @@ const MagazaIslemleri = () => {
                                 value={newMagazaData.sifre}
                                 onChange={handleAddInputChange}
                             />
-                            <button type="submit" className="update-submit-button">Ekle</button>
+                            <button type="submit" className="magaza-update-submit-button">Ekle</button>
                             <button
                                 type="button"
-                                className="close-button"
+                                className="magaza-close-button"
                                 onClick={() => setShowAddForm(false)}
                             >
                                 Kapat
@@ -187,22 +187,22 @@ const MagazaIslemleri = () => {
 
             {/* Detay Modali */}
             {selectedMagaza && (
-                <div className="detail-modal">
-                    <div className="detail-content">
+                <div className="magaza-detail-modal">
+                    <div className="magaza-detail-content">
                         <h2>Mağaza Detayları</h2>
                         <p><strong>Mağaza Adı:</strong> {selectedMagaza.magazaAdi}</p>
                         <p><strong>Adres:</strong> {selectedMagaza.adres}</p>
                         <p><strong>Telefon:</strong> {selectedMagaza.telefonNo}</p>
                         <p><strong>Mail:</strong> {selectedMagaza.mail}</p>
-                        <button className="close-button" onClick={handleCloseDetail}>Kapat</button>
+                        <button className="magaza-close-button" onClick={handleCloseDetail}>Kapat</button>
                     </div>
                 </div>
             )}
 
             {/* Güncelleme Formu */}
             {showUpdateForm && (
-                <div className="update-modal">
-                    <div className="update-content">
+                <div className="magaza-update-modal">
+                    <div className="magaza-update-content">
                         <h2>Mağaza Bilgilerini Güncelle</h2>
                         <form onSubmit={handleUpdateSubmit}>
                             <label>Mağaza Adı:</label>
@@ -240,10 +240,10 @@ const MagazaIslemleri = () => {
                                 value={formData.sifre}
                                 onChange={handleInputChange}
                             />
-                            <button type="submit" className="update-submit-button">Güncelle</button>
+                            <button type="submit" className="magaza-update-submit-button">Güncelle</button>
                             <button
                                 type="button"
-                                className="close-button"
+                                className="magaza-close-button"
                                 onClick={() => setShowUpdateForm(false)}
                             >
                                 Kapat
@@ -255,11 +255,11 @@ const MagazaIslemleri = () => {
 
             {/* Silme Onayı */}
             {showDeleteConfirm && (
-                <div className="delete-confirm-modal">
-                    <div className="delete-confirm-content">
+                <div className="magaza-delete-confirm-modal">
+                    <div className="magaza-delete-confirm-content">
                         <h2>Silmek İstediğinizden Emin Misiniz?</h2>
-                        <button className="delete-confirm-button" onClick={handleDeleteConfirm}>Evet, Sil</button>
-                        <button className="delete-cancel-button" onClick={handleDeleteCancel}>Hayır, Vazgeç</button>
+                        <button className="magaza-delete-confirm-button" onClick={handleDeleteConfirm}>Evet, Sil</button>
+                        <button className="magaza-delete-cancel-button" onClick={handleDeleteCancel}>Hayır, Vazgeç</button>
                     </div>
                 </div>
             )}

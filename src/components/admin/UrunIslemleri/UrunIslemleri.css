@@ -33,14 +33,14 @@
 }
 
 /* Buton grubu */
-.button-group {
+.urun-button-group {
     display: flex;
     justify-content: flex-start;
     gap: 8px;
 }
 
 /* Butonlar */
-.btn {
+.urun-btn {
     padding: 8px 12px;
     font-size: 0.9rem;
     border: none;
@@ -49,35 +49,60 @@
     transition: background-color 0.2s ease;
 }
 
-.btn-detail {
+.urun-btn-detail {
     background-color: #2196f3;
     color: white;
 }
 
-.btn-detail:hover {
+.urun-btn-detail:hover {
     background-color: #1976d2;
 }
 
-.btn-update {
+.urun-btn-update {
     background-color: #4caf50;
     color: white;
 }
 
-.btn-update:hover {
-    background-color: #45a049;
+.urun-btn-cancel, .urun-btn-confirm {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
-.btn-delete {
+.urun-btn-confirm {
+    background-color: #007bff;
+    color: white;
+}
+
+.urun-btn-confirm:hover {
+    background-color: #0056b3;
+}
+
+.urun-btn-cancel{
     background-color: #f44336;
     color: white;
 }
 
-.btn-delete:hover {
+.urun-btn-cancel:hover {
+    background-color: #d73227;
+}
+
+.urun-btn-update:hover {
+    background-color: #45a049;
+}
+
+.urun-btn-delete {
+    background-color: #f44336;
+    color: white;
+}
+
+.urun-btn-delete:hover {
     background-color: #d32f2f;
 }
 
 /* Modal Overlay */
-.modal-overlay {
+.urun-modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -91,7 +116,7 @@
 }
 
 /* Modal Content */
-.modal-content {
+.urun-modal-content {
     background-color: white;
     padding: 20px;
     border-radius: 8px;
@@ -102,7 +127,7 @@
 }
 
 /* Close Button */
-.close-btn {
+.urun-close-btn {
     position: absolute;
     top: 10px;
     right: 10px;
