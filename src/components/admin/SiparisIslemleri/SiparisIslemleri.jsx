@@ -15,7 +15,7 @@ const SiparisIslemleri = () => {
   const iadeIslemler = useSelector((state) => state.siparis.iadeIslemler);
 
   // Fabrikalar ve Mağazalar
-  const fabrikalar = useSelector((state) => state.fabrika.list);
+  const fabrikalar = useSelector((state) => state.fabrika.fabrikalar);
 
   // Durum
   const siparisStatus = useSelector((state) => state.siparis.status);
@@ -65,18 +65,17 @@ const SiparisIslemleri = () => {
   };
 
   const handleDetails = (islem) => {
-    setDetailData({
-      magazaAdi: islem.magazaAdi,
-    });
-    setIsModalOpen(true);
-  };
-
-  // eslint-disable-next-line no-unused-vars
-  const handleDetails2 = (islem) => {
+    console.log(fabrikalar)
     if (selectedOperation === 'Giris') {
+      // fabrikaID'yi al ve fabrikalar listesinde eşleşen adresi bul
       const fabrika = fabrikalar.find((f) => f.fabrikaId === islem.fabrikaID);
       setDetailData({
-        fabrikaAdi: fabrika ? fabrika.Adres : 'Bilinmiyor',
+        fabrikaAdi: fabrika ? fabrika.adres : 'Bilinmiyor', // Eğer fabrika bulunamazsa 'Bilinmiyor' yazacak
+      });
+    } else {
+      // Diğer işlemler için mağaza adı gibi bilgiler eklenebilir
+      setDetailData({
+        magazaAdi: islem.magazaAdi,
       });
     }
     setIsModalOpen(true);
@@ -87,12 +86,13 @@ const SiparisIslemleri = () => {
     setDetailData(null);
   };
 
+
   return (
     <div>
       <h1>İşlem Listesi</h1>
 
       {/* İşlem türü butonları */}
-      <div className="operation-buttons">
+      <div className="siparis-operation-buttons">
         <button onClick={() => setSelectedOperation('Giris')}>Giriş İşlemleri</button>
         <button onClick={() => setSelectedOperation('Cikis')}>Çıkış İşlemleri</button>
         <button onClick={() => setSelectedOperation('Iade')}>İade İşlemleri</button>
@@ -117,7 +117,7 @@ const SiparisIslemleri = () => {
               <td>{islem.urunAdedi}</td>
               <td>{islem.islemTarihi}</td>
               <td>
-                <button className="details-button" onClick={() => handleDetails(islem)}>Detay</button>
+                <button className="siparis-details-button" onClick={() => handleDetails(islem)}>Detay</button>
               </td>
             </tr>
           ))}
@@ -126,22 +126,22 @@ const SiparisIslemleri = () => {
 
       {/* Detay Modali */}
       {isModalOpen && detailData && (
-          <div className="detail-modal">
-              <div className="detail-content">
-                  <div className="modal-header">
-                      <h2>Detaylar</h2>
-                  </div>
-                  <div className="detail-info">
-                      {detailData.magazaAdi && (
-                          <p><strong>Mağaza Adı:</strong> {detailData.magazaAdi}</p>
-                      )}
-                      {detailData.fabrikaAdi && (
-                          <p><strong>Fabrika Adı:</strong> {detailData.fabrikaAdi}</p>
-                      )}
-                      <button className="close-button" onClick={closeModal}> Kapat </button>
-                  </div>
-              </div>
+        <div className="siparis-detail-modal">
+          <div className="siparis-detail-content">
+            <div className="siparis-modal-header">
+              <h2>Detaylar</h2>
+            </div>
+            <div className="siparis-detail-info">
+              {detailData.magazaAdi && (
+                <p><strong>Mağaza Adı:</strong> {detailData.magazaAdi}</p>
+              )}
+              {detailData.fabrikaAdi && (
+                <p><strong>Fabrika Adı:</strong> {detailData.fabrikaAdi}</p>
+              )}
+              <button className="siparis-close-button" onClick={closeModal}> Kapat </button>
+            </div>
           </div>
+        </div>
       )}
     </div>
   );
