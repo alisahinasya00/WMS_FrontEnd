@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchGirisIslemler, fetchCikisIslemler, fetchIadeIslemler } from '../../../redux/siparisSlice';
 import { fetchFabrikalar } from '../../../redux/fabrikaSlice';
 import { fetchMagazalar } from '../../../redux/magazaSlice';
-///import './SiparisIslemleri.css';
+import './SiparisIslemleri.css';
 
 const SiparisIslemleri = () => {
   const dispatch = useDispatch();
@@ -117,33 +117,31 @@ const SiparisIslemleri = () => {
               <td>{islem.urunAdedi}</td>
               <td>{islem.islemTarihi}</td>
               <td>
-                <button onClick={() => handleDetails(islem)}>Detay</button>
+                <button className="details-button" onClick={() => handleDetails(islem)}>Detay</button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
 
-      {/* Modal */}
-      {isModalOpen && (
-        <div className="modal">
-          <div className="modal-content">
-            <span className="close-button" onClick={closeModal}>
-              &times;
-            </span>
-            <h2>Detaylar</h2>
-            {detailData && (
-              <>
-                {detailData.magazaAdi && (
-                  <p><strong>Mağaza Adı:</strong> {detailData.magazaAdi}</p>
-                )}
-                {detailData.fabrikaAdi && (
-                  <p><strong>Fabrika Adı:</strong> {detailData.fabrikaAdi}</p>
-                )}
-              </>
-            )}
+      {/* Detay Modali */}
+      {isModalOpen && detailData && (
+          <div className="detail-modal">
+              <div className="detail-content">
+                  <div className="modal-header">
+                      <h2>Detaylar</h2>
+                  </div>
+                  <div className="detail-info">
+                      {detailData.magazaAdi && (
+                          <p><strong>Mağaza Adı:</strong> {detailData.magazaAdi}</p>
+                      )}
+                      {detailData.fabrikaAdi && (
+                          <p><strong>Fabrika Adı:</strong> {detailData.fabrikaAdi}</p>
+                      )}
+                      <button className="close-button" onClick={closeModal}> Kapat </button>
+                  </div>
+              </div>
           </div>
-        </div>
       )}
     </div>
   );
