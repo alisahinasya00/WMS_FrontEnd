@@ -2,19 +2,22 @@
 import React from 'react';
 import { Button, Box, Typography, Paper } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import '../../src/components/admin/AdminDashboard.css'
 
 function LoginHome() {
     const navigate = useNavigate();
 
     return (
         <Box
+            className='App'
             display="flex"
             flexDirection="column"
             alignItems="center"
             justifyContent="center"
             minHeight="100vh"
-            bgcolor="#e3f2fd" // Hafif bir mavi tonuyla arka plan
-            padding="20px"
+            sx={{
+                padding: '20px',
+            }}
         >
             {/* İçerik kutusu */}
             <Paper
@@ -28,11 +31,11 @@ function LoginHome() {
                     textAlign: 'center',
                 }}
             >
-                <Typography variant="h3" gutterBottom style={{ fontWeight: 'bold', color: '#1565c0' }}>
+                <Typography variant="h3" gutterBottom style={{ fontWeight: 'bold', color: 'black' }}>
                     Depo Yönetim Sistemi
                 </Typography>
 
-                <Typography variant="h4" gutterBottom style={{ marginBottom: '20px', color: '#0d47a1' }}>
+                <Typography variant="h4" gutterBottom style={{ marginBottom: '20px', color: 'black' }}>
                     Hoşgeldiniz
                 </Typography>
 
@@ -43,7 +46,7 @@ function LoginHome() {
                         style={{
                             padding: '10px',
                             fontSize: '16px',
-                            backgroundColor: '#1e88e5', // Orta mavi tonu
+                            backgroundColor: 'black', // Orta mavi tonu
                             color: '#fff', // Beyaz yazı
                             textTransform: 'none', // Büyük harf yerine normal metin
                         }}
@@ -57,7 +60,7 @@ function LoginHome() {
                         style={{
                             padding: '10px',
                             fontSize: '16px',
-                            backgroundColor: '#1976d2', // Biraz daha koyu mavi
+                            backgroundColor: 'black', // Biraz daha koyu mavi
                             color: '#fff',
                             textTransform: 'none', // Büyük harf yerine normal metin
                         }}
@@ -71,7 +74,7 @@ function LoginHome() {
                         style={{
                             padding: '10px',
                             fontSize: '16px',
-                            backgroundColor: '#1565c0', // En koyu mavi
+                            backgroundColor: 'black', // En koyu mavi
                             color: '#fff',
                             textTransform: 'none', // Büyük harf yerine normal metin
                         }}
