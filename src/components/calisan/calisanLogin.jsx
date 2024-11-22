@@ -45,7 +45,7 @@ function calisanLogin() {
     return (
         <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" minHeight="100vh" bgcolor="#e3f2fd" padding="20px">
             <Typography variant="h3" gutterBottom>
-                Yönetici Girişi
+                Çalışan Girişi
             </Typography>
             <TextField
                 label="Kullanıcı Adı (E-posta)"
