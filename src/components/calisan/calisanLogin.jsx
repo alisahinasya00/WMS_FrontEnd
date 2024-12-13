@@ -25,20 +25,19 @@ function calisanLogin() {
         }
 
         const user = calisanlar.find(c =>
-            c.mail === username && // API'den gelen alan adlarını doğru kullandığınızdan emin olun
+            c.mail === username &&
             c.sifre === password
         );
 
         if (user) {
             if (user.rolAdi !== 'Çalışan') {
-                setErrorMessage('Yetkisiz erişim: Çalışan rolü gerekmektedir.'); // Set unauthorized access error
+                setErrorMessage('Yetkisiz erişim: Çalışan rolü gerekmektedir.');
                 return;
             }
-
-            localStorage.setItem('currentCalisan', JSON.stringify(user)); // Save admin user
-            navigate('/CalisanDashboard'); // Yönetici paneline yönlendir
+            localStorage.setItem('userMail', user.mail);
+            navigate('/CalisanDashboard');
         } else {
-            setErrorMessage('Giriş başarısız: Kullanıcı adı veya şifre hatalı.'); // Update login failure message
+            setErrorMessage('Giriş başarısız: Kullanıcı adı veya şifre hatalı.');
         }
     };
 

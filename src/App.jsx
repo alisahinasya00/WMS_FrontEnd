@@ -6,6 +6,7 @@ import AdminLogin from './components/admin/AdminLogin';
 import CalisanLogin from './components/calisan/calisanLogin';
 import MagazaLogin from './components/magaza/magazaLogin';
 import AdminDashboard from './components/admin/AdminDashboard';
+import CalisanDashboard from './components/calisan/CalisanDashboard'
 function App() {
   return (
 
@@ -15,6 +16,7 @@ function App() {
       <Route path='/magazaLogin' element={<MagazaLogin />} />
       <Route path='/adminLogin' element={<AdminLogin />} />
       <Route path='/AdminDashboard' element={<AdminDashboard />} />
+      <Route path='/CalisanDashboard' element={<CalisanDashboard />} />
     </Routes>
   )
 }

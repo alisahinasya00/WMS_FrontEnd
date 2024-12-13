@@ -6,10 +6,10 @@ const initialState = {
     seciliadmin: null,
     magazalar: [],
     seciliMagaza: null,
-    calisanlar: [],
     seciliCalisan: null,
+    calisanlar: [],
     status: 'idle',
-    error: null
+    error: null,
 }
 
 export const getCalisan = createAsyncThunk('getCalisan', async () => {
@@ -32,7 +32,6 @@ export const loginSlice = createSlice({
     name: 'login',
     initialState,
     reducers: {
-
     },
     extraReducers: (builder) => {
         builder
@@ -60,6 +59,4 @@ export const loginSlice = createSlice({
             })
     }
 })
-
-export const { } = loginSlice.actions
 export default loginSlice.reducer
