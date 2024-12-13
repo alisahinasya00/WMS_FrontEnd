@@ -4,6 +4,7 @@ import { Button, TextField, Box, Typography, CircularProgress } from '@mui/mater
 import { useDispatch, useSelector } from 'react-redux';
 import { getCalisan } from '../../redux/loginSlice'; // Gerekli slice'ı import et
 import { useNavigate } from 'react-router-dom';
+import './AdminDashboard.css'
 
 function AdminLogin() {
     const [username, setUsername] = useState('');
@@ -42,7 +43,7 @@ function AdminLogin() {
     };
 
     return (
-        <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" minHeight="100vh" bgcolor="#e3f2fd" padding="20px">
+        <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" minHeight="100vh" className="App" padding="20px">
             <Typography variant="h3" gutterBottom>
                 Yönetici Girişi
             </Typography>
@@ -65,10 +66,16 @@ function AdminLogin() {
             />
             <Button
                 variant="contained"
-                color="primary"
-                onClick={handleLogin}
                 fullWidth
+                onClick={handleLogin}
                 disabled={status === 'loading'} // Yükleme sırasında butonu devre dışı bırak
+                style={{
+                    backgroundColor: 'black', // Siyah arka plan
+                    color: 'white', // Beyaz yazı rengi
+                    textTransform: 'none', // Yazı küçük-büyük harf dönüşümünü kaldır
+                    padding: '10px',
+                    fontSize: '16px',
+                }}
             >
                 Giriş Yap
             </Button>
