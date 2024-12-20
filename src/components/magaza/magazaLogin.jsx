@@ -30,7 +30,7 @@ function magazaLogin() {
         );
 
         if (magaza) {
-            localStorage.setItem('currentMagaza', JSON.stringify(magaza)); // Save admin user
+            localStorage.setItem('magazaMail', magaza.mail); // Save admin user
             navigate('/magazaDashboard'); // Yönetici paneline yönlendir
         } else {
             setErrorMessage('Giriş başarısız: Kullanıcı adı veya şifre hatalı.'); // Update login failure message

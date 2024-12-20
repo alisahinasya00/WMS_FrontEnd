@@ -83,6 +83,28 @@ export const CalisanSidebarData = [
     },
 ];
 
+export const MagazaSidebarData = [
+    {
+        icon: CiHome,
+        heading: "Ana Sayfa",
+        screen: 'mainDash'
+    },
+    {
+        icon: CiUser,
+        heading: "Bilgilerim",
+        screen: "magaza"
+    },
+    {
+        icon: BsBox2,
+        heading: "Mağaza İşlemleri",
+        screen: "urun"
+    },
+    {
+        icon: GrTransaction,
+        heading: "Siparişler",
+        screen: "siparis"
+    },
+];
 
 export const CardsData = [
     {
