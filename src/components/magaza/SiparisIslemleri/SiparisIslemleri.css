@@ -1,0 +1,80 @@
+.magaza-siparis-islemleri {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .magaza-siparis-islemleri h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .magaza-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .magaza-table th,
+  .magaza-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .magaza-table th {
+    background-color: #f4f4f4;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .magaza-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .magaza-table td {
+    color: #555;
+  }
+  
+  .magaza-table td:first-child,
+  .magaza-table th:first-child {
+    width: 30%;
+  }
+  
+  .magaza-table td:last-child,
+  .magaza-table th:last-child {
+    width: 20%;
+  }
+
+  .magaza_iptal button {
+    padding: 12px 16px; /* Daha geniş ve yüksek padding */
+    font-size: 16px; /* Font boyutunu artırdık */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .magaza_iptal button:not(:disabled) {
+    background-color: #e74c3c; /* Kırmızı renk */
+    color: white;
+  }
+  
+  .magaza_iptal button:not(:disabled):hover {
+    background-color: #c0392b; /* Daha koyu kırmızı */
+  }
+  
+  .magaza_iptal button:disabled {
+    background-color: #bdc3c7; /* Gri renk */
+    color: #7f8c8d;
+    cursor: not-allowed;
+    border: 1px solid #95a5a6; /* Hafif bir kenar çizgisi */
+  }
+  
+  .magaza_iptal button:not(:disabled):active {
+    transform: scale(0.95); /* Buton tıklandığında hafif küçültme */
+  }
+  
+
+  

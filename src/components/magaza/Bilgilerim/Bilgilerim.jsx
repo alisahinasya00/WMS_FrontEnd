@@ -115,7 +115,7 @@ const Bilgilerim = () => {
 
     return (
         <Box className="card-container">
-            <Typography variant="h4" className="card-title">Magaza Bilgilerim</Typography>
+            <Typography variant="h4" className="card-title">Mağaza Bilgilerim</Typography>
             <Typography variant="body1" className="card-item">Adı: {magaza.magazaAdi}</Typography>
             <Typography variant="body1" className="card-item">Adres: {magaza.adres}</Typography>
             <Typography variant="body1" className="card-item">Telefon No: {magaza.telefonNo}</Typography>

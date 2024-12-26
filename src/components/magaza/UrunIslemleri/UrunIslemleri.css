@@ -1,0 +1,139 @@
+/* UrunIslemleri.css */
+
+/* Yeni Sipariş Ekle butonu */
+.magaza_siparis_button {
+  background-color: #4CAF50; /* Yeşil renk */
+  margin-top: 60px;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.magaza_siparis_button:hover {
+  background-color: #45a049; /* Hover durumunda renk değişir */
+}
+
+/* Sipariş Formu */
+.magaza_siparis_order-form {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.magaza_siparis_order-form h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Form elemanları için stil */
+.magaza_siparis_form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.magaza_siparis_label {
+  font-size: 1rem;
+  color: #333;
+}
+
+.magaza_siparis_select,
+.magaza_siparis_input {
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.magaza_siparis_select {
+  width: 100%;
+}
+
+.magaza_siparis_input {
+  width: 100%;
+}
+
+/* Number input stilini düzeltme */
+.magaza_siparis_input[type="number"]::-webkit-outer-spin-button,
+.magaza_siparis_input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Submit ve İptal butonları */
+.magaza_siparis_submit-button,
+.magaza_siparis_cancel-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.magaza_siparis_submit-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.magaza_siparis_submit-button:hover {
+  background-color: #45a049;
+}
+
+.magaza_siparis_cancel-button {
+  background-color: #f44336;
+  color: white;
+}
+
+.magaza_siparis_cancel-button:hover {
+  background-color: #e53935;
+}
+
+/* Stok uyarısı */
+.stok-uuyari {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* İade Et butonları */
+.magaza_siparis_table button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* İade Et butonu için aktif stil */
+.magaza_siparis_table button:not([disabled]) {
+  background-color: #007bff; /* Mavi renk */
+  color: white;
+}
+
+.magaza_siparis_table button:not([disabled]):hover {
+  background-color: #0056b3; /* Koyu mavi */
+  transform: scale(1.05); /* Hover durumunda büyüme efekti */
+}
+
+/* İade Edilemez butonu için pasif stil */
+.magaza_siparis_table button[disabled] {
+  background-color: #cccccc; /* Gri renk */
+  color: #666;
+  cursor: not-allowed;
+}
+
+/* Siparişler başlığı için stil */
+.magaza_siparisler-baslik {
+  margin-top: 60px; /* Başlığın üst kısmına boşluk ekleyerek biraz daha aşağıya indirilir */
+  /*text-align: center;*/
+  color: #333;
+}
