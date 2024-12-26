@@ -7,6 +7,7 @@ import LoginHome from '../LoginHome';
 import SiparisIslemleri from './SiparisIslemleri/SiparisIslemleri.jsx'
 import UrunIslemleri from './UrunIslemleri/UrunIslemleri.jsx'
 import Bilgilerim from './Bilgilerim/Bilgilerim.jsx'
+import UrunKayit from './UrunKayıt/UrunKayit.jsx'
 
 function CalisanDashboard() {
 
@@ -29,6 +30,8 @@ function CalisanDashboard() {
                 return <SiparisIslemleri />;
             case 'urun':
                 return <UrunIslemleri />;
+            case 'urunKayit':
+                return <UrunKayit />;
             default:
                 return <MainDash />
         }

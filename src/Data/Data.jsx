@@ -16,6 +16,7 @@ import { FaFileInvoiceDollar } from "react-icons/fa";
 import { MdOutlineProductionQuantityLimits } from "react-icons/md";
 import { MdCategory } from "react-icons/md";
 import { FaBox } from "react-icons/fa";
+import { IoMdAddCircleOutline } from "react-icons/io";
 import { BsBox2 } from "react-icons/bs";
 import { GrTransaction } from "react-icons/gr";
 
@@ -75,6 +76,11 @@ export const CalisanSidebarData = [
         icon: BsBox2,
         heading: "Ürün İşlemleri",
         screen: "urun"
+    },
+    {
+        icon: IoMdAddCircleOutline,
+        heading: "Yeni Ürün Kayıt ",
+        screen: "urunKayit"
     },
     {
         icon: GrTransaction,
