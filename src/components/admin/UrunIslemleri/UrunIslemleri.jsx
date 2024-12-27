@@ -13,11 +13,9 @@ const UrunIslemleri = () => {
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
     useEffect(() => {
-        if (status === "idle") {
             dispatch(fetchUrunler());
             dispatch(fetchKonumlar());
-        }
-    }, [status, dispatch]);
+    }, [dispatch]);
 
     useEffect(() => {
         console.log("Konumlar:", konumlar);  // Konum verilerini kontrol edelim.
