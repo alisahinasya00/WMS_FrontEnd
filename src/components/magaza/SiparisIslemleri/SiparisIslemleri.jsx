@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchCikisIslemler, fetchIadeIslemler, updateCikisIslem, updateIadeIslem, deleteCikisIslem,deleteIadeIslem } from '../../../redux/siparisSlice';
+import { fetchCikisIslemler, fetchIadeIslemler, updateCikisIslem, updateIadeIslem, deleteCikisIslem, deleteIadeIslem } from '../../../redux/siparisSlice';
 import { fetchMagazalar } from '../../../redux/magazaSlice';
 import { fetchUrunler } from '../../../redux/urunSlice';
 import './SiparisIslemleri.css';
@@ -34,33 +34,43 @@ const SiparisIslemleri = () => {
     const handleCancel = (islem, type) => {
         const confirmCancel = window.confirm("Bu işlemi iptal etmek istediğinizden emin misiniz?");
         if (!confirmCancel) return;
-    
+
         const islemTurId = type === 'cikis' ? 3 : type === 'iade' ? 2 : null;
         const urun = urunler.find((urun) => urun.adi === islem.urunAdi);
-        
+
         // updatedData oluşturulurken islemId yerine uygun ID gönderiliyor
         const updatedData = {
-            urunId: urun.urunId,
+            urunID: urun.urunId,
             urunAdedi: islem.urunAdedi,
-            calisanId: 2, 
-            islemTurId: islemTurId,
-            magazaId: magaza.magazaId,
+            calisanID: 2,
+            islemTurID: islemTurId,
+            magazaID: magaza.magazaId,
             durum: 'İptal Edildi',
             islemTarihi: new Date().toISOString(),
-            islemId: type === 'cikis' ? islem.cikisIslemId : islem.iadeIslemId,
+            ...(type === 'cikis'
+                ? { cikisIslemId: islem.cikisIslemId }
+                : { iadeIslemId: islem.iadeIslemId }),
         };
-    
         if (type === 'cikis') {
             console.log("güncelleme", updatedData);
             dispatch(updateCikisIslem({ updatedData }));
             dispatch(fetchCikisIslemler)
+            dispatch(fetchIadeIslemler)
+            dispatch(fetchUrunler)
+            //  window.location.reload();
+
             //dispatch(deleteCikisIslem(islem.cikisIslemId)); // Silme işlemi
         } else if (type === 'iade') {
             console.log("güncelleme", updatedData);
             dispatch(updateIadeIslem({ updatedData }));
+            dispatch(fetchCikisIslemler)
+            dispatch(fetchIadeIslemler)
+            dispatch(fetchUrunler)
+            //   window.location.reload();
+
             //dispatch(deleteIadeIslem(islem.iadeIslemId)); // Silme işlemi
         }
-    };    
+    };
 
     // Gerekli verileri çek
     useEffect(() => {
@@ -77,7 +87,7 @@ const SiparisIslemleri = () => {
     return (
         <div className="magaza_iptal">
             <h1 className="magaza_siparisler-baslik">{magaza.magazaAdi} Sipariş İşlemleri</h1>
-    
+
             <table>
                 <thead>
                     <tr>
@@ -122,7 +132,7 @@ const SiparisIslemleri = () => {
                 </tbody>
             </table>
         </div>
-    );    
+    );
 };
 
 export default SiparisIslemleri;

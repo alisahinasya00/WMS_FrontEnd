@@ -6,7 +6,7 @@ import { fetchMagazalar } from '../../../redux/magazaSlice';
 import { fetchCikisIslemler, fetchIadeIslemler, addCikisIslem, addIadeIslem, deleteCikisIslem } from '../../../redux/siparisSlice';
 import './UrunIslemleri.css';
 
-function UrunIslemleri() {
+function UrunIslemleri() {   //mağaza işlemleri sayfası
   const dispatch = useDispatch();
 
   // Redux store'dan mağaza ve sipariş verilerini al
@@ -51,17 +51,19 @@ function UrunIslemleri() {
 
     const secilenUrun = urunler.find((urun) => urun.adi === seciliUrun);
     const yeniSiparis = {
-      urunId: secilenUrun.urunId,
+      urunID: secilenUrun.urunId,
       urunAdedi: adet,
-      calisanId: 2,
+      calisanID: 2,
       islemTurId: 3,
-      magazaId: magaza.magazaId,
+      magazaID: magaza.magazaId,
       islemTarihi: new Date().toISOString(),
       durum: 'Bekliyor',
     };
-
     console.log('Yeni Sipariş', yeniSiparis);
     dispatch(addCikisIslem(yeniSiparis));
+    dispatch(fetchUrunler);
+    dispatch(fetchCikisIslemler);
+    //  window.location.reload();
     setSiparisFormuGoster(false);
   };
 
@@ -85,7 +87,6 @@ function UrunIslemleri() {
       alert('İlgili işlem bulunamadı.');
       return;
     }
-
     if (islem.durum === 'Onaylandı') {
       const updatedData = {
         urunId: urun.urunId,
@@ -95,12 +96,15 @@ function UrunIslemleri() {
         islemTarihi: new Date().toISOString(),
         durum: 'Bekliyor',
         islemTurId: 2,
-        
       };
       console.log('seciliUrun:', islem.urunAdi);
-      console.log("urun",updatedData);
+      console.log("güncellenen ürün", updatedData);
       dispatch(addIadeIslem(updatedData));
       dispatch(deleteCikisIslem(cikisIslemId));
+      dispatch(fetchCikisIslemler);
+      dispatch(fetchIadeIslemler);
+      dispatch(fetchUrunler);
+      //window.location.reload();
     } else {
       alert(`Bu işlem iade edilemez. Durum: ${islem.durum}`);
     }
@@ -178,7 +182,7 @@ function UrunIslemleri() {
               <td>{islem.durum}</td>
               <td>{islem.islemAdi}</td>
               <td>
-                {islem.durum === 'Onaylandı' ? (
+                {islem.durum === 'Onaylandı' && islem.islemTurId === 3 ? (
                   <button onClick={() => handleIade(islem.cikisIslemId)}>İade Et</button>
                 ) : (
                   <button disabled>İade Edilemez</button>
