@@ -34,10 +34,8 @@ const SiparisIslemleri = () => {
     const handleCancel = (islem, type) => {
         const confirmCancel = window.confirm("Bu işlemi iptal etmek istediğinizden emin misiniz?");
         if (!confirmCancel) return;
-
         const islemTurId = type === 'cikis' ? 3 : type === 'iade' ? 2 : null;
         const urun = urunler.find((urun) => urun.adi === islem.urunAdi);
-
         // updatedData oluşturulurken islemId yerine uygun ID gönderiliyor
         const updatedData = {
             urunID: urun.urunId,
@@ -52,23 +50,17 @@ const SiparisIslemleri = () => {
                 : { iadeIslemId: islem.iadeIslemId }),
         };
         if (type === 'cikis') {
-            console.log("güncelleme", updatedData);
+            console.log("cikis iptal güncelleme", updatedData);
             dispatch(updateCikisIslem({ updatedData }));
             dispatch(fetchCikisIslemler)
             dispatch(fetchIadeIslemler)
             dispatch(fetchUrunler)
-            //  window.location.reload();
-
-            //dispatch(deleteCikisIslem(islem.cikisIslemId)); // Silme işlemi
         } else if (type === 'iade') {
-            console.log("güncelleme", updatedData);
+            console.log("iade iptal güncelleme", updatedData);
             dispatch(updateIadeIslem({ updatedData }));
             dispatch(fetchCikisIslemler)
             dispatch(fetchIadeIslemler)
             dispatch(fetchUrunler)
-            //   window.location.reload();
-
-            //dispatch(deleteIadeIslem(islem.iadeIslemId)); // Silme işlemi
         }
     };
 

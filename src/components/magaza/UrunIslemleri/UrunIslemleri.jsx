@@ -54,7 +54,7 @@ function UrunIslemleri() {   //mağaza işlemleri sayfası
       urunID: secilenUrun.urunId,
       urunAdedi: adet,
       calisanID: 2,
-      islemTurId: 3,
+      islemTurID: 3,
       magazaID: magaza.magazaId,
       islemTarihi: new Date().toISOString(),
       durum: 'Bekliyor',
@@ -182,7 +182,7 @@ function UrunIslemleri() {   //mağaza işlemleri sayfası
               <td>{islem.durum}</td>
               <td>{islem.islemAdi}</td>
               <td>
-                {islem.durum === 'Onaylandı' && islem.islemTurId === 3 ? (
+                {islem.durum === 'Onaylandı' && islem.islemAdi === "Çıkış" ? (
                   <button onClick={() => handleIade(islem.cikisIslemId)}>İade Et</button>
                 ) : (
                   <button disabled>İade Edilemez</button>
