@@ -63,11 +63,9 @@ const UrunIslemleri = () => {
 
 
     useEffect(() => {
-        if (status === "idle") {
             dispatch(fetchUrunler());
             dispatch(fetchKonumlar());
-        }
-    }, [status, dispatch]);
+    }, [dispatch]);
 
     if (status === "loading") {
         return <div>Loading...</div>;
