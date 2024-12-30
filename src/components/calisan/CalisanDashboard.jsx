@@ -8,6 +8,7 @@ import SiparisIslemleri from './SiparisIslemleri/SiparisIslemleri.jsx'
 import UrunIslemleri from './UrunIslemleri/UrunIslemleri.jsx'
 import Bilgilerim from './Bilgilerim/Bilgilerim.jsx'
 import UrunKayit from './UrunKayıt/UrunKayit.jsx'
+import GirisUrunler from './GirisUrunler/GirisUrunler.jsx';
 
 function CalisanDashboard() {
 
@@ -28,6 +29,8 @@ function CalisanDashboard() {
                 return <Bilgilerim />;
             case 'siparis':
                 return <SiparisIslemleri />;
+            case 'siparis2':
+                return <GirisUrunler />;
             case 'urun':
                 return <UrunIslemleri />;
             case 'urunKayit':

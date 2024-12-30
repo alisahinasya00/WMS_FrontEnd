@@ -84,8 +84,13 @@ export const CalisanSidebarData = [
     },
     {
         icon: GrTransaction,
-        heading: "Giriş/Çıkış Ürünler",
+        heading: "Çıkış/İade Ürünler",
         screen: "siparis"
+    },
+    {
+        icon: GrTransaction,
+        heading: "Ürün Giriş",
+        screen: "siparis2"
     },
 ];
 
