@@ -5,7 +5,6 @@ import { fetchUrunler, fetchKonumlar } from "../../../redux/urunSlice"; // Redux
 import "./UrunIslemleri.css";
 
 const UrunIslemleri = () => {
-
     const dispatch = useDispatch();
     const { urunler, konumlar, status, error } = useSelector((state) => state.urun);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -63,8 +62,8 @@ const UrunIslemleri = () => {
 
 
     useEffect(() => {
-            dispatch(fetchUrunler());
-            dispatch(fetchKonumlar());
+        dispatch(fetchUrunler());
+        dispatch(fetchKonumlar());
     }, [dispatch]);
 
     if (status === "loading") {

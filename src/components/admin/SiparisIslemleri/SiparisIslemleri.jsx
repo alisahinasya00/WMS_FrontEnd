@@ -8,24 +8,15 @@ import './SiparisIslemleri.css';
 
 const SiparisIslemleri = () => {
   const dispatch = useDispatch();
-
-  // İşlemler
   const girisIslemler = useSelector((state) => state.siparis.girisIslemler);
   const cikisIslemler = useSelector((state) => state.siparis.cikisIslemler);
   const iadeIslemler = useSelector((state) => state.siparis.iadeIslemler);
-
-  // Fabrikalar ve Mağazalar
   const fabrikalar = useSelector((state) => state.fabrika.fabrikalar);
-
-  // Durum
   const siparisStatus = useSelector((state) => state.siparis.status);
   const siparisError = useSelector((state) => state.siparis.error);
-
   const [selectedOperation, setSelectedOperation] = useState(null);
   const [detailData, setDetailData] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  // Fetch işlemleri
   useEffect(() => {
     if (selectedOperation === 'Giris') {
       dispatch(fetchGirisIslemler());
@@ -35,8 +26,6 @@ const SiparisIslemleri = () => {
       dispatch(fetchIadeIslemler());
     }
   }, [dispatch, selectedOperation]);
-
-  // Fabrika ve Mağaza verilerini çek
   useEffect(() => {
     dispatch(fetchFabrikalar());
     dispatch(fetchMagazalar());
@@ -106,7 +95,8 @@ const SiparisIslemleri = () => {
             <th>Çalışan Adı</th>
             <th>Ürün Adedi</th>
             <th>İşlem Tarihi</th>
-            <th>İşlemler</th>
+            <th>Durum</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -116,6 +106,7 @@ const SiparisIslemleri = () => {
               <td>{islem.calisanAdi}</td>
               <td>{islem.urunAdedi}</td>
               <td>{islem.islemTarihi}</td>
+              <td>{islem.durum}</td>
               <td>
                 <button className="siparis-details-button" onClick={() => handleDetails(islem)}>Detay</button>
               </td>

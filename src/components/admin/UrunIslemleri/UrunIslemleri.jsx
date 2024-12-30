@@ -7,14 +7,63 @@ import "./UrunIslemleri.css"; // Stilleri için ayrı bir dosya ekliyoruz.
 const UrunIslemleri = () => {
     const dispatch = useDispatch();
     const { urunler, konumlar, status, error } = useSelector((state) => state.urun);
-
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedUrun, setSelectedUrun] = useState(null);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
+    const [rfidCard, setRfidCard] = useState("");
+    const [isListening, setIsListening] = useState(false);
+    const [rfidError, setRfidError] = useState("");
+
+    const openSearchModal = () => {
+        setIsSearchModalOpen(true);
+        setIsListening(true); // RFID girişlerini dinlemeye başla
+        setRfidCard(""); // Kart numarasını sıfırla
+        setRfidError(""); // Hata mesajını sıfırla
+
+    };
+
+    const closeSearchModal = () => {
+        setIsSearchModalOpen(false);
+        setIsListening(false); // RFID girişlerini durdur
+        setRfidCard("");
+        setRfidError(""); // Hata mesajını sıfırla
+
+    };
 
     useEffect(() => {
-            dispatch(fetchUrunler());
-            dispatch(fetchKonumlar());
+        setIsSearchModalOpen(false);
+        if (!isListening) {
+            return;
+        }
+        const handleKeyDown = (event) => {
+            setIsSearchModalOpen(false);
+            if (event.key === "Enter") {
+                setIsSearchModalOpen(false);
+                const urun = urunler.find((u) => u.kartNumarasi === rfidCard.trim());
+                if (urun) {
+                    setIsSearchModalOpen(false);
+                    setSelectedUrun(urun);
+                    setIsModalOpen(true);
+                }
+                else {
+                    setIsSearchModalOpen(false);
+                    alert("Bu karta ait ürün bulunamadı.");
+                }
+                setIsListening(false);
+            } else {
+                setRfidCard((prev) => prev + event.key);
+            }
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [isListening, rfidCard, urunler]);
+
+
+    useEffect(() => {
+        dispatch(fetchUrunler());
+        dispatch(fetchKonumlar());
     }, [dispatch]);
 
     useEffect(() => {
@@ -69,6 +118,9 @@ const UrunIslemleri = () => {
         <div className="table-container">
             {/* Başlık ve Yeni Ürün Ekle Butonu */}
             <h1>Ürünler</h1>
+            <button className="urun1-urun-search-btn" onClick={openSearchModal}>
+                Ürün Ara
+            </button>
 
 
             <table className="urun-table">
@@ -125,6 +177,16 @@ const UrunIslemleri = () => {
                             <button className="urun-btn urun-btn-confirm" onClick={() => handleDelete(selectedUrun.urunId)}>Evet, Sil</button>
                             <button className="urun-btn urun-btn-cancel" onClick={closeDeleteModal}>Hayır, Vazgeç</button>
                         </div>
+                    </div>
+                </div>
+            )}
+
+            {/* RFID Arama Modal */}
+            {isSearchModalOpen && (
+                <div className="urun1-urun-modal-overlay" onClick={closeSearchModal}>
+                    <div className="urun1-urun-modal-content" onClick={(e) => e.stopPropagation()}>
+                        <button className="urun1-urun-close-btn" onClick={closeSearchModal}>X</button>
+                        <h2>Kartı Okutun</h2>
                     </div>
                 </div>
             )}
