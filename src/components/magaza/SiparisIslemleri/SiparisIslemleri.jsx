@@ -52,15 +52,15 @@ const SiparisIslemleri = () => {
         if (type === 'cikis') {
             console.log("cikis iptal güncelleme", updatedData);
             dispatch(updateCikisIslem({ updatedData }));
-            dispatch(fetchCikisIslemler)
-            dispatch(fetchIadeIslemler)
-            dispatch(fetchUrunler)
+            dispatch(fetchCikisIslemler())
+            dispatch(fetchIadeIslemler())
+            dispatch(fetchUrunler())
         } else if (type === 'iade') {
             console.log("iade iptal güncelleme", updatedData);
             dispatch(updateIadeIslem({ updatedData }));
-            dispatch(fetchCikisIslemler)
-            dispatch(fetchIadeIslemler)
-            dispatch(fetchUrunler)
+            dispatch(fetchCikisIslemler())
+            dispatch(fetchIadeIslemler())
+            dispatch(fetchUrunler())
         }
     };
 

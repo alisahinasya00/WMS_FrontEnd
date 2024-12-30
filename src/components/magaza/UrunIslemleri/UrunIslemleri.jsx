@@ -61,9 +61,8 @@ function UrunIslemleri() {   //mağaza işlemleri sayfası
     };
     console.log('Yeni Sipariş', yeniSiparis);
     dispatch(addCikisIslem(yeniSiparis));
-    dispatch(fetchUrunler);
-    dispatch(fetchCikisIslemler);
-    //  window.location.reload();
+    dispatch(fetchUrunler());
+    dispatch(fetchCikisIslemler());
     setSiparisFormuGoster(false);
   };
 
@@ -101,10 +100,9 @@ function UrunIslemleri() {   //mağaza işlemleri sayfası
       console.log("güncellenen ürün", updatedData);
       dispatch(addIadeIslem(updatedData));
       dispatch(deleteCikisIslem(cikisIslemId));
-      dispatch(fetchCikisIslemler);
-      dispatch(fetchIadeIslemler);
-      dispatch(fetchUrunler);
-      //window.location.reload();
+      dispatch(fetchCikisIslemler());
+      dispatch(fetchIadeIslemler());
+      dispatch(fetchUrunler());
     } else {
       alert(`Bu işlem iade edilemez. Durum: ${islem.durum}`);
     }
