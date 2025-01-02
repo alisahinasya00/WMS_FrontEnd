@@ -107,12 +107,12 @@ export const MagazaSidebarData = [
     },
     {
         icon: BsBox2,
-        heading: "Mağaza İşlemleri",
+        heading: "Sipariş ve İade",
         screen: "urun"
     },
     {
         icon: GrTransaction,
-        heading: "Siparişler",
+        heading: "Siparişler ve İptal",
         screen: "siparis"
     },
 ];
