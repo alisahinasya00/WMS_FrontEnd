@@ -78,8 +78,7 @@ const SiparisIslemleri = () => {
 
     return (
         <div className="magaza_iptal">
-            <h1 className="magaza_siparisler-baslik">{magaza.magazaAdi} Sipariş İşlemleri</h1>
-
+            <h1 className="magaza_siparisler-baslik">{magaza.magazaAdi} Sipariş İade İşlemleri</h1>
             <table>
                 <thead>
                     <tr>

@@ -44,7 +44,7 @@ function calisanLogin() {
 
     return (
         <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" minHeight="100vh" className="App" padding="20px">
-            <Typography variant="h3" gutterBottom>
+            <Typography variant="h3" gutterBottom style={{ color: 'black', }}>
                 Çalışan Girişi
             </Typography>
             <TextField

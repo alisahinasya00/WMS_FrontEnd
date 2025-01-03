@@ -53,7 +53,7 @@ const SiparisIslemleri = () => {
         const updatedData = {
             durum: status,
             urunID: urun.urunId,
-            islemTurID: type === 'cikis' ? 2 : 3,
+            islemTurID: type === 'cikis' ? 3 : 2,
             magazaID: magaza.magazaId,
             calisanID: mevcutCalisan.calisanId,
             urunAdedi: islem.urunAdedi,
