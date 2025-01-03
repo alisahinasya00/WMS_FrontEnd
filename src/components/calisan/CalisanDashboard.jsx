@@ -17,7 +17,7 @@ function CalisanDashboard() {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        localStorage.clear();
+        // localStorage.clear();
         navigate('/');
     };
 

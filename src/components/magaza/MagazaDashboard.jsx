@@ -9,12 +9,12 @@ import UrunIslemleri from './UrunIslemleri/UrunIslemleri.jsx'
 import Bilgilerim from './Bilgilerim/Bilgilerim.jsx'
 
 function MagazaDashboard() {
-  const [selectedScreen, setSelectedScreen] = useState('mainDash');
+    const [selectedScreen, setSelectedScreen] = useState('mainDash');
     const [selected, setSelected] = useState(0);
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        localStorage.clear();
+        // localStorage.clear();
         navigate('/');
     };
 
@@ -32,8 +32,8 @@ function MagazaDashboard() {
                 return <MainDash />
         }
     };
-  return (
-    <div className="App">
+    return (
+        <div className="App">
             <div className="AppGlass">
                 <Sidebar
                     setSelectedScreen={setSelectedScreen}
@@ -45,7 +45,7 @@ function MagazaDashboard() {
                 {/* <RightSide /> */}
             </div>
         </div>
-  )
+    )
 }
 
 export default MagazaDashboard
