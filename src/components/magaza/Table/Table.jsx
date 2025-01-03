@@ -6,15 +6,10 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import TableSortLabel from "@mui/material/TableSortLabel";
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
-import TableSortLabel from "@mui/material/TableSortLabel";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogTitle from "@mui/material/DialogTitle";
-import Button from "@mui/material/Button";
-import './Table.css';
+import "./Table.css";
 
 const getStatusStyle = (status) => {
     if (status === "Onaylandi") {
@@ -31,27 +26,11 @@ const getStatusStyle = (status) => {
 const TableComponent = ({ data, title }) => {
     const [order, setOrder] = useState("asc");
     const [orderBy, setOrderBy] = useState("urunAdi");
-    const [openDialog, setOpenDialog] = useState(false);
-    const [selectedAction, setSelectedAction] = useState(null);
 
     const handleRequestSort = (property) => {
         const isAsc = orderBy === property && order === "asc";
         setOrder(isAsc ? "desc" : "asc");
         setOrderBy(property);
-    };
-
-    const handleDialogOpen = () => {
-        setOpenDialog(true);
-    };
-
-    const handleDialogClose = () => {
-        setOpenDialog(false);
-    };
-
-    const handleActionSelect = (action) => {
-        setSelectedAction(action);
-        setOpenDialog(false);
-        downloadPDF(action);
     };
 
     const sortedData = [...data].sort((a, b) => {
@@ -67,50 +46,40 @@ const TableComponent = ({ data, title }) => {
         return 0;
     });
 
-    const filterDataByAction = (action) => {
-        if (!action) return sortedData;
-        return sortedData.filter((row) => {
-            if (row.islemAdi) {
-                return row.islemAdi.toLowerCase().includes(action.toLowerCase());
-            }
-            return false;
-        });
-    };
-
-    const downloadPDF = (action) => {
+    const downloadPDF = () => {
         const doc = new jsPDF();
-        const filteredData = filterDataByAction(action);
+        doc.text(title, 20, 10);
+        const tableColumn = ["Urun Adi", "Islem Adi", "Tarih", "Calisan Adi", "Adet", "Durum", "Magaza Adi"];
+        const tableRows = [];
 
-        if (filteredData.length === 0) {
-            alert("Seçilen işlem türüne göre veri bulunmamaktadır.");
-            return;
-        }
-
-        doc.autoTable({
-            head: [
-                ["Urun Adi", "Islem Adi", "Tarih", "Calisan Adi", "Adet", "Durum"],
-            ],
-            body: filteredData.map((row) => [
+        sortedData.forEach((row) => {
+            const rowData = [
                 row.urunAdi,
                 row.islemAdi,
                 new Date(row.islemTarihi).toLocaleDateString(),
                 row.calisanAdi,
                 row.urunAdedi,
                 row.durum,
-            ]),
-            startY: 20,
-            margin: { top: 30 },
-            theme: "grid",
+                row.magazaAdi,
+            ];
+            tableRows.push(rowData);
         });
 
-        if (action == null)
-            doc.save(`${title}.pdf`);
-        doc.save(`${action}.pdf`);
+        doc.autoTable({
+            head: [tableColumn],
+            body: tableRows,
+            startY: 20,
+        });
+
+        doc.save(`islemler.pdf`);
     };
 
     return (
         <div className="Table">
             <h3>{title}</h3>
+            <button onClick={downloadPDF} style={{ marginBottom: "10px", padding: "8px 16px", backgroundColor: "#00796b", color: "white", border: "none", borderRadius: "4px", cursor: "pointer" }}>
+                PDF Olarak İndir
+            </button>
             <TableContainer component={Paper} style={{ boxShadow: "0px 13px 20px 0px #80808029", borderRadius: "12px", background: "#f5f5f5" }}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
@@ -166,6 +135,7 @@ const TableComponent = ({ data, title }) => {
                                 </TableSortLabel>
                             </TableCell>
                             <TableCell align="left">Durum</TableCell>
+                            <TableCell align="left">Mağaza Adı</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -183,40 +153,12 @@ const TableComponent = ({ data, title }) => {
                                         {row.durum}
                                     </span>
                                 </TableCell>
+                                <TableCell align="left">{row.magazaAdi}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
                 </Table>
             </TableContainer>
-
-            {/* PDF İndirme Butonu */}
-            <button className="download-btn" onClick={handleDialogOpen} style={{ background: "#00796b", color: "#fff", padding: "10px 20px", borderRadius: "8px" }}>
-                PDF Olarak İndir
-            </button>
-
-            {/* Dialog Penceresi */}
-            <Dialog open={openDialog} onClose={handleDialogClose}>
-                <DialogTitle>İşlem Seçin</DialogTitle>
-                <DialogContent>
-                    <Button fullWidth onClick={() => handleActionSelect("Giriş")}>
-                        Giriş İşlemleri
-                    </Button>
-                    <Button fullWidth onClick={() => handleActionSelect("Çıkış")}>
-                        Çıkış İşlemleri
-                    </Button>
-                    <Button fullWidth onClick={() => handleActionSelect("İade")}>
-                        İade İşlemleri
-                    </Button>
-                    <Button fullWidth onClick={() => handleActionSelect(null)}>
-                        Tüm İşlemler
-                    </Button>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleDialogClose} color="primary">
-                        Kapat
-                    </Button>
-                </DialogActions>
-            </Dialog>
         </div>
     );
 };
